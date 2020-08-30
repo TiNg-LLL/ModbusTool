@@ -29,17 +29,30 @@ public class NewJPanel extends JPanel {
 
         jButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                try {
-                    modbus.ModbuswriteSingleRegister(slaveId, i, Integer.valueOf(jTextField.getText()));
-                    jLabel2.setText(jLabelName + "---设置成功");
-                } catch (Exception e1) {
-                    jLabel2.setText(jLabelName + "---设置失败");
+                if (modbus.ModbusisConnected()) {
+                    try {
+                        int a = Integer.valueOf(jTextField.getText());
+                        if (a < 32768) {
+                            modbus.ModbuswriteSingleRegister(slaveId, i, a);
+                            jLabel2.setText(jLabelName + "---设置成功");
+                        } else {
+                            if (a < 65536) {
+                                modbus.ModbuswriteSingleRegister(slaveId, i, a);
+                                jLabel2.setText(jLabelName + "---设置成功");
+                            } else {
+                                modbus.ModbuswriteSingleRegister(slaveId, i, 65535);
+                                modbus.ModbuswriteSingleRegister(slaveId, i + 1, a - 65535);
+                                jLabel2.setText(jLabelName + "---设置成功");
+                            }
+                        }
+                    } catch (Exception e1) {
+                        jLabel2.setText(jLabelName + "---设置失败");
+                    }
+                } else {
+                    jLabel2.setText("端口未连接");
                 }
-
             }
         });
-
-
     }
 
     public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, NewJPanel newJPanel, JLabel jLabel2) {

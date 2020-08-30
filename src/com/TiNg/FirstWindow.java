@@ -265,15 +265,15 @@ public class FirstWindow extends JFrame {
                     }
                     try {
                         if (modbus.ModbusisConnected()) {
-                            int[] i1 = modbus.ModbusreadHoldingRegisters(Integer.valueOf(comAddressJTextField.getText()), middle3JPanel1.getAddress(), 1);
-                            int[] i2 = modbus.ModbusreadHoldingRegisters(Integer.valueOf(comAddressJTextField.getText()), middle3JPanel2.getAddress(), 1);
-                            int[] i3 = modbus.ModbusreadHoldingRegisters(Integer.valueOf(comAddressJTextField.getText()), middle3JPanel3.getAddress(), 1);
-                            int[] i4 = modbus.ModbusreadHoldingRegisters(Integer.valueOf(comAddressJTextField.getText()), middle3JPanel4.getAddress(), 1);
-                            int[] i5 = modbus.ModbusreadHoldingRegisters(Integer.valueOf(comAddressJTextField.getText()), middle3JPanel5.getAddress(), 1);
-                            int[] i6 = modbus.ModbusreadHoldingRegisters(Integer.valueOf(comAddressJTextField.getText()), middle3JPanel6.getAddress(), 1);
-                            int[] i7 = modbus.ModbusreadHoldingRegisters(Integer.valueOf(comAddressJTextField.getText()), middle3JPanel7.getAddress(), 1);
-                            int[] i8 = modbus.ModbusreadHoldingRegisters(Integer.valueOf(comAddressJTextField.getText()), middle3JPanel8.getAddress(), 1);
-                            int[] i9 = modbus.ModbusreadHoldingRegisters(Integer.valueOf(comAddressJTextField.getText()), middle3JPanel9.getAddress(), 1);
+                            int[] i1 = modbus.ModbusreadHoldingRegisters(Integer.valueOf(comAddressJTextField.getText()), middle3JPanel1.getAddress(), 2);
+                            int[] i2 = modbus.ModbusreadHoldingRegisters(Integer.valueOf(comAddressJTextField.getText()), middle3JPanel2.getAddress(), 2);
+                            int[] i3 = modbus.ModbusreadHoldingRegisters(Integer.valueOf(comAddressJTextField.getText()), middle3JPanel3.getAddress(), 2);
+                            int[] i4 = modbus.ModbusreadHoldingRegisters(Integer.valueOf(comAddressJTextField.getText()), middle3JPanel4.getAddress(), 2);
+                            int[] i5 = modbus.ModbusreadHoldingRegisters(Integer.valueOf(comAddressJTextField.getText()), middle3JPanel5.getAddress(), 2);
+                            int[] i6 = modbus.ModbusreadHoldingRegisters(Integer.valueOf(comAddressJTextField.getText()), middle3JPanel6.getAddress(), 2);
+                            int[] i7 = modbus.ModbusreadHoldingRegisters(Integer.valueOf(comAddressJTextField.getText()), middle3JPanel7.getAddress(), 2);
+                            int[] i8 = modbus.ModbusreadHoldingRegisters(Integer.valueOf(comAddressJTextField.getText()), middle3JPanel8.getAddress(), 2);
+                            int[] i9 = modbus.ModbusreadHoldingRegisters(Integer.valueOf(comAddressJTextField.getText()), middle3JPanel9.getAddress(), 2);
                             middle3JPanel1.setNowData().setText("当前值：" + i1[0]);
                             middle3JPanel2.setNowData().setText("当前值：" + i2[0]);
                             middle3JPanel3.setNowData().setText("当前值：" + i3[0]);
@@ -335,6 +335,14 @@ public class FirstWindow extends JFrame {
         Collections.sort(list);
         for (int i = 0; i < portNames.length; i++) {
             jComboBox.addItem(list.get(i));
+        }
+    }
+
+    public int readdDataTreat(int a, int b) {
+        if (a < 32768) {
+            return a;
+        } else {
+            return b; //未完成
         }
     }
 }

@@ -91,18 +91,15 @@ public class Modbus {
     }
 
     //线圈闭合
-    public void ModbuswritetrueMultipleCoils(int slaveId, int offset) {
+    public Exception ModbuswritetrueMultipleCoils(int slaveId, int offset) {
         boolean[] b = new boolean[1];
         b[0] = true;
         try {
             mm.writeMultipleCoils(slaveId, offset, b);
-        } catch (ModbusProtocolException e) {
-            e.printStackTrace();
-        } catch (ModbusNumberException e) {
-            e.printStackTrace();
-        } catch (ModbusIOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            return e;
         }
+        return null;
     }
 
     //线圈断开
