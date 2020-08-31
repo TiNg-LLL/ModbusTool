@@ -17,6 +17,7 @@ public class FirstWindow extends JFrame {
     int screenWidth = screenSize.width;             //获取屏幕的宽
     int screenHeight = screenSize.height;           //获取屏幕的高
     Modbus modbus = new Modbus();
+    DataTreat dataTreat = new DataTreat();
 
     public FirstWindow(String windowName, int windowWidth, int windowHeight) {
 
@@ -274,15 +275,15 @@ public class FirstWindow extends JFrame {
                             int[] i7 = modbus.ModbusreadHoldingRegisters(Integer.valueOf(comAddressJTextField.getText()), middle3JPanel7.getAddress(), 2);
                             int[] i8 = modbus.ModbusreadHoldingRegisters(Integer.valueOf(comAddressJTextField.getText()), middle3JPanel8.getAddress(), 2);
                             int[] i9 = modbus.ModbusreadHoldingRegisters(Integer.valueOf(comAddressJTextField.getText()), middle3JPanel9.getAddress(), 2);
-                            middle3JPanel1.setNowData().setText("当前值：" + i1[0]);
-                            middle3JPanel2.setNowData().setText("当前值：" + i2[0]);
-                            middle3JPanel3.setNowData().setText("当前值：" + i3[0]);
-                            middle3JPanel4.setNowData().setText("当前值：" + i4[0]);
-                            middle3JPanel5.setNowData().setText("当前值：" + i5[0]);
-                            middle3JPanel6.setNowData().setText("当前值：" + i6[0]);
-                            middle3JPanel7.setNowData().setText("当前值：" + i7[0]);
-                            middle3JPanel8.setNowData().setText("当前值：" + i8[0]);
-                            middle3JPanel9.setNowData().setText("当前值：" + i9[0]);
+                            middle3JPanel1.setNowData().setText("当前值：" + dataTreat.readtenToBinary(i1));
+                            middle3JPanel2.setNowData().setText("当前值：" + dataTreat.readtenToBinary(i2));
+                            middle3JPanel3.setNowData().setText("当前值：" + dataTreat.readtenToBinary(i3));
+                            middle3JPanel4.setNowData().setText("当前值：" + dataTreat.readtenToBinary(i4));
+                            middle3JPanel5.setNowData().setText("当前值：" + dataTreat.readtenToBinary(i5));
+                            middle3JPanel6.setNowData().setText("当前值：" + dataTreat.readtenToBinary(i6));
+                            middle3JPanel7.setNowData().setText("当前值：" + dataTreat.readtenToBinary(i7));
+                            middle3JPanel8.setNowData().setText("当前值：" + dataTreat.readtenToBinary(i8));
+                            middle3JPanel9.setNowData().setText("当前值：" + dataTreat.readtenToBinary(i9));
                         } else {
                             middle3JPanel1.setNowData().setText("当前值：");
                             middle3JPanel2.setNowData().setText("当前值：");

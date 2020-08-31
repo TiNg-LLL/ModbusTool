@@ -9,6 +9,7 @@ public class NewJPanel extends JPanel {
     JLabel jLabel1;
     int i;
     JTextField jTextField;
+    DataTreat dataTreat = new DataTreat();
 
     public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, int addressData, Modbus modbus, int slaveId, JLabel jLabel2) {
         setPreferredSize(new Dimension(width, height));
@@ -34,19 +35,22 @@ public class NewJPanel extends JPanel {
                         int a = Integer.valueOf(jTextField.getText());
                         if (a < 32768) {
                             modbus.ModbuswriteSingleRegister(slaveId, i, a);
+                            modbus.ModbuswriteSingleRegister(slaveId, i + 1, 0);
                             jLabel2.setText(jLabelName + "---设置成功");
                         } else {
                             if (a < 65536) {
                                 modbus.ModbuswriteSingleRegister(slaveId, i, a);
+                                modbus.ModbuswriteSingleRegister(slaveId, i + 1, 0);
                                 jLabel2.setText(jLabelName + "---设置成功");
                             } else {
-                                modbus.ModbuswriteSingleRegister(slaveId, i, 65535);
-                                modbus.ModbuswriteSingleRegister(slaveId, i + 1, a - 65535);
+                                modbus.ModbuswriteSingleRegister(slaveId, i, dataTreat.tenToBinary(a)[0]);
+                                modbus.ModbuswriteSingleRegister(slaveId, i + 1, dataTreat.tenToBinary(a)[1]);
                                 jLabel2.setText(jLabelName + "---设置成功");
                             }
                         }
                     } catch (Exception e1) {
                         jLabel2.setText(jLabelName + "---设置失败");
+                        e1.printStackTrace();
                     }
                 } else {
                     jLabel2.setText("端口未连接");
