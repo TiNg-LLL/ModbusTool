@@ -17,7 +17,7 @@ public class NewJPanel extends JPanel {
     MouseAdapter mouseAdapter;
     ActionListener actionListener;
 
-    public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, int addressData, Modbus modbus, int slaveId, JLabel jLabel2) {
+    public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, int addressData, Modbus modbus, int slaveId, JLabel jLabel2) {   //左侧四级JPanel
         setPreferredSize(new Dimension(width, height));
         setLayout(new FlowLayout(FlowLayout.LEFT, 5, 2));
         /**setBackground(Color.LIGHT_GRAY);*/
@@ -65,7 +65,7 @@ public class NewJPanel extends JPanel {
         });
     }
 
-    public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, NewJPanel newJPanel, JLabel jLabel2) {
+    public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, NewJPanel newJPanel, JLabel jLabel2) {   //左侧地址参数设置JPanel
         setPreferredSize(new Dimension(width, height));
         setLayout(new FlowLayout(FlowLayout.LEFT, 5, 2));
         /**setBackground(Color.LIGHT_GRAY);*/
@@ -86,7 +86,7 @@ public class NewJPanel extends JPanel {
         });
     }
 
-    public NewJPanel(JPanel jPanel, int width, int height, String jButtonName, int addressData, Modbus modbus, int slaveId, JLabel jLabel2, int choose, String mory) {
+    public NewJPanel(JPanel jPanel, int width, int height, String jButtonName, int addressData, Modbus modbus, int slaveId, JLabel jLabel2, int choose, String mory) {   //中部四级JPanel
         setPreferredSize(new Dimension(width, height));
         setLayout(new FlowLayout(FlowLayout.LEFT, 5, 2));
         /**setBackground(Color.LIGHT_GRAY);*/
@@ -102,31 +102,53 @@ public class NewJPanel extends JPanel {
         } else {
             i = addressData + 18432;
         }
+
         this.choose = choose;
 
         mouseAdapter = new MouseInputAdapter() {
             public void mousePressed(MouseEvent e) {
-                modbus.ModbuswritetrueMultipleCoils(slaveId, i);
+                try {
+                    modbus.ModbuswritetrueMultipleCoils(slaveId, i);
+                } catch (Exception e1) {
+                    jLabel2.setText(jButtonName + "：端口未连接");
+                }
+
             }
 
             public void mouseReleased(MouseEvent e) {
-                modbus.ModbuswritefalseMultipleCoils(slaveId, i);
+                try {
+                    modbus.ModbuswritefalseMultipleCoils(slaveId, i);
+                } catch (Exception e1) {
+                    jLabel2.setText(jButtonName + "：端口未连接");
+                }
+
             }
         };
 
         actionListener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                boolean[] b = modbus.ModbusreadCoils(slaveId, i, 1);
-                if (b[0]) {
-                    modbus.ModbuswritefalseMultipleCoils(slaveId, i);
-                } else {
-                    modbus.ModbuswritetrueMultipleCoils(slaveId, i);
+                try {
+                    boolean[] b = modbus.ModbusreadCoils(slaveId, i, 1);
+                    if (b[0]) {
+                        modbus.ModbuswritefalseMultipleCoils(slaveId, i);
+                    } else {
+                        modbus.ModbuswritetrueMultipleCoils(slaveId, i);
+                    }
+                } catch (Exception e1) {
+                    jLabel2.setText(jButtonName + "：端口未连接");
                 }
+
             }
         };
+
+        if (choose == 1) {
+            jButton.addMouseListener(mouseAdapter);
+        } else {
+            jButton.addActionListener(actionListener);
+        }
     }
 
-    public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, NewJPanel newJPanel, JLabel jLabel2, String meiluanyong) {
+    public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, NewJPanel newJPanel, JLabel jLabel2, String meiluanyong) {      //中部线圈地址参数设置JPanel
         setPreferredSize(new Dimension(width, height));
         setLayout(new FlowLayout(FlowLayout.LEFT, 5, 2));
         /**setBackground(Color.LIGHT_GRAY);*/
@@ -146,6 +168,9 @@ public class NewJPanel extends JPanel {
         JComboBox choosejComboBox = new JComboBox();
         choosejComboBox.addItem("点动");
         choosejComboBox.addItem("切换");
+        if (newJPanel.choose == 2) {
+            choosejComboBox.setSelectedIndex(1);
+        }
         add(jLabel);
         add(jComboBox);
         add(jTextField);
@@ -158,24 +183,24 @@ public class NewJPanel extends JPanel {
                 newJPanel.coilChangeAddress(Integer.valueOf(jTextField.getText()), jComboBox);
                 if (choosejComboBox.getSelectedIndex() == 0) {
                     try {
-                        newJPanel.getJButton().removeActionListener(newJPanel.getJButton().getAction());
+                        newJPanel.getJButton().removeActionListener(newJPanel.getJButton().getActionListeners()[0]);
+                        newJPanel.getJButton().addMouseListener(newJPanel.getMouseAdapter());
+                        System.out.println("切换成功");
+                        jLabel2.setText("<" + newJPanel.getJButton().getText() + ">" + "设为点动模式");
                     } catch (Exception e1) {
                         System.out.println("切换失败");
                     }
-                    if (newJPanel.getJButton().getMouseListeners()[0] == null) {
-                        newJPanel.getJButton().addMouseListener(newJPanel.getMouseAdapter());
-                    }
-                    System.out.println("切换成功");
                 } else {
                     try {
-                        newJPanel.getJButton().removeMouseListener(newJPanel.getJButton().getMouseListeners()[0]);
+                        System.out.println(newJPanel.getJButton().getMouseListeners().length);
+                        newJPanel.getJButton().removeMouseListener(newJPanel.getJButton().getMouseListeners()[1]); //[0]是按钮自带的MouseListener
+                        newJPanel.getJButton().addActionListener(newJPanel.getActionListener());
+                        System.out.println("切换成功");
+                        jLabel2.setText("<" + newJPanel.getJButton().getText() + ">" + "设为切换模式");
                     } catch (Exception e1) {
+                        e1.printStackTrace();
                         System.out.println("切换失败");
                     }
-                    if (newJPanel.getJButton().getAction() == null) {
-                        newJPanel.getJButton().addActionListener(newJPanel.getActionListener());
-                    }
-                    System.out.println("切换成功");
                 }
             }
         });
