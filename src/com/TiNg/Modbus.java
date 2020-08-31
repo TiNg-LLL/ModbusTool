@@ -116,4 +116,18 @@ public class Modbus {
             e.printStackTrace();
         }
     }
+
+    public boolean[] ModbusreadCoils(int slaveId, int offset, int quantity) {
+        try {
+            boolean[] b = mm.readCoils(slaveId, offset, quantity);
+            return b;
+        } catch (ModbusProtocolException e) {
+            e.printStackTrace();
+        } catch (ModbusNumberException e) {
+            e.printStackTrace();
+        } catch (ModbusIOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
