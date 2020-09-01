@@ -88,7 +88,7 @@ public class NewJPanel extends JPanel {
 
     public NewJPanel(JPanel jPanel, int width, int height, String jButtonName, int addressData, Modbus modbus, int slaveId, JLabel jLabel2, int choose, String mory) {   //中部四级JPanel
         setPreferredSize(new Dimension(width, height));
-        setLayout(new FlowLayout(FlowLayout.LEFT, 5, 2));
+        setLayout(new FlowLayout(FlowLayout.LEFT, 5, 0));
         /**setBackground(Color.LIGHT_GRAY);*/
         jButton = new JButton(jButtonName);
         jLabel1 = new JLabel("当前值：");
@@ -97,10 +97,17 @@ public class NewJPanel extends JPanel {
         add(jLabel1);
         jPanel.add(this);
         this.mory = mory;
+        i = addressData;
         if (mory.equals("M")) {
-            i = addressData;
-        } else {
+            if (i < 8000) {
+                this.i = i;
+            } else {
+                this.i = i + 16576;
+            }
+        } else if (addressData < 8) {
             i = addressData + 18432;
+        } else {
+            i = addressData + 18430;
         }
 
         this.choose = choose;
@@ -206,6 +213,27 @@ public class NewJPanel extends JPanel {
         });
     }
 
+    public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, int addressData, Modbus modbus, int slaveId, JLabel jLabel2, String meiluanyong1) {   //左侧四级JPanel
+        setPreferredSize(new Dimension(width, height));
+        setLayout(new FlowLayout(FlowLayout.LEFT, 5, 2));
+        /**setBackground(Color.LIGHT_GRAY);*/
+        JLabel jLabel = new JLabel(jLabelName);
+        jLabel.setFont(new Font("宋体", Font.PLAIN, 12));
+        JComboBox<String> jComboBox = new JComboBox<String>();
+        JButton jButton = new JButton("设置");
+        add(jLabel);
+        add(jComboBox);
+        add(jButton);
+        jPanel.add(this);
+        this.changeAddress(addressData);
+
+        jButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+    }
+
     public JLabel setNowData() {
         return jLabel1;
     }
@@ -224,9 +252,15 @@ public class NewJPanel extends JPanel {
 
     public void coilChangeAddress(int i, JComboBox jComboBox) {
         if (jComboBox.getSelectedIndex() == 0) {
-            this.i = i;
-        } else {
+            if (i < 8000) {
+                this.i = i;
+            } else {
+                this.i = i + 16576;
+            }
+        } else if (i < 8) {
             this.i = i + 18432;
+        } else {
+            this.i = i + 18430;
         }
     }
 
