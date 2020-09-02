@@ -412,7 +412,7 @@ public class FirstWindow extends JFrame {
             public void run() {
                 while (true) {
                     try {
-                        Thread.sleep(500);
+                        Thread.sleep(5);
                     } catch (Exception e) {
                     }
                     try {
