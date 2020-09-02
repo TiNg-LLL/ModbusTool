@@ -179,21 +179,21 @@ public class FirstWindow extends JFrame {
 
         //中部主功能二级左侧JPanel1----------------------------------------------------------------------------------------
         JPanel middle2JPanel1 = new JPanel();
-        middle2JPanel1.setPreferredSize(new Dimension(350, 360));
-        middle2JPanel1.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
+        middle2JPanel1.setPreferredSize(new Dimension(340, 360));
+        middle2JPanel1.setLayout(new FlowLayout(FlowLayout.LEFT, 15, 5));
         /**middle2JPanel1.setBackground(Color.GREEN);*/
         middle1JPanel.add(middle2JPanel1, BorderLayout.CENTER);
 
         //中部主功能三级左侧JPanel1
         JPanel lift3JPanel1 = new JPanel();
-        lift3JPanel1.setPreferredSize(new Dimension(350, 313));
+        lift3JPanel1.setPreferredSize(new Dimension(340, 313));
         lift3JPanel1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         /**lift3JPanel1.setBackground(Color.GREEN);*/
         middle2JPanel1.add(lift3JPanel1, BorderLayout.NORTH);
 
         //中部主功能三级左侧JPanel2
         JPanel lift3JPanel2 = new JPanel();
-        lift3JPanel2.setPreferredSize(new Dimension(350, 60));
+        lift3JPanel2.setPreferredSize(new Dimension(340, 60));
         lift3JPanel2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 0));
         /**lift3JPanel2.setBackground(Color.DARK_GRAY);*/
         middle2JPanel1.add(lift3JPanel2, BorderLayout.SOUTH);
@@ -206,7 +206,7 @@ public class FirstWindow extends JFrame {
         String lift1Name5 = "    上层位置";
         String lift1Name6 = "    移动速度";
         String lift1Name7 = "    下层位置";
-        String lift1Name8 = "    延时1";
+        String lift1Name8 = "    材料厚度";
         String lift1Name9 = "    延时2";
         boolean b1 = true;
         boolean b2 = true;
@@ -215,17 +215,17 @@ public class FirstWindow extends JFrame {
         boolean b5 = true;
         boolean b6 = true;
         boolean b7 = true;
-        boolean b8 = false;
+        boolean b8 = true;
         boolean b9 = false;
-        NewJPanel lift4JPanel1 = new NewJPanel(lift3JPanel1, 350, 30, lift1Name1, 4000, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage);
-        NewJPanel lift4JPanel2 = new NewJPanel(lift3JPanel1, 350, 30, lift1Name2, 4004, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage);
-        NewJPanel lift4JPanel3 = new NewJPanel(lift3JPanel1, 350, 30, lift1Name3, 4010, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage);
-        NewJPanel lift4JPanel4 = new NewJPanel(lift3JPanel1, 350, 30, lift1Name4, 4012, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage);
-        NewJPanel lift4JPanel5 = new NewJPanel(lift3JPanel1, 350, 30, lift1Name5, 4100, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage);
-        NewJPanel lift4JPanel6 = new NewJPanel(lift3JPanel1, 350, 30, lift1Name6, 4102, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage);
-        NewJPanel lift4JPanel7 = new NewJPanel(lift3JPanel1, 350, 30, lift1Name7, 4110, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage);
-        NewJPanel lift4JPanel8 = new NewJPanel(lift3JPanel1, 350, 30, lift1Name8, 80, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage);
-        NewJPanel lift4JPanel9 = new NewJPanel(lift3JPanel1, 350, 30, lift1Name9, 90, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage);
+        NewJPanel lift4JPanel1 = new NewJPanel(lift3JPanel1, 340, 30, lift1Name1, 4000, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage);
+        NewJPanel lift4JPanel2 = new NewJPanel(lift3JPanel1, 340, 30, lift1Name2, 4004, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage);
+        NewJPanel lift4JPanel3 = new NewJPanel(lift3JPanel1, 340, 30, lift1Name3, 4010, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage);
+        NewJPanel lift4JPanel4 = new NewJPanel(lift3JPanel1, 340, 30, lift1Name4, 4012, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage);
+        NewJPanel lift4JPanel5 = new NewJPanel(lift3JPanel1, 340, 30, lift1Name5, 4100, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage);
+        NewJPanel lift4JPanel6 = new NewJPanel(lift3JPanel1, 340, 30, lift1Name6, 4102, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage);
+        NewJPanel lift4JPanel7 = new NewJPanel(lift3JPanel1, 340, 30, lift1Name7, 4110, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage);
+        NewJPanel lift4JPanel8 = new NewJPanel(lift3JPanel1, 340, 30, lift1Name8, 4200, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 1);
+        NewJPanel lift4JPanel9 = new NewJPanel(lift3JPanel1, 340, 30, lift1Name9, 90, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage);
         lift4JPanel1.setVisible(b1);
         lift4JPanel2.setVisible(b2);
         lift4JPanel3.setVisible(b3);
@@ -242,21 +242,22 @@ public class FirstWindow extends JFrame {
 
         //中部地址参数设置左侧弹窗
         String addressDataWindowName = "地址参数设置";
-        int addressDataWindowWidth = 300;
+        int addressDataWindowWidth = 280;
         int addressDataWindowHeight = 380;
         NewWindow addressDataWindow = new NewWindow(addressDataWindowName, addressDataWindowWidth, addressDataWindowHeight);
         JPanel addressDataJPanel = new JPanel();
         addressDataJPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         addressDataWindow.add(addressDataJPanel);
-        NewJPanel addressDataJPanel1 = new NewJPanel(addressDataJPanel, 290, 30, lift1Name1 + ":D", lift4JPanel1, dataMessage);
-        NewJPanel addressDataJPanel2 = new NewJPanel(addressDataJPanel, 290, 30, lift1Name2 + ":D", lift4JPanel2, dataMessage);
-        NewJPanel addressDataJPanel3 = new NewJPanel(addressDataJPanel, 290, 30, lift1Name3 + ":D", lift4JPanel3, dataMessage);
-        NewJPanel addressDataJPanel4 = new NewJPanel(addressDataJPanel, 290, 30, lift1Name4 + ":D", lift4JPanel4, dataMessage);
-        NewJPanel addressDataJPanel5 = new NewJPanel(addressDataJPanel, 290, 30, lift1Name5 + ":D", lift4JPanel5, dataMessage);
-        NewJPanel addressDataJPanel6 = new NewJPanel(addressDataJPanel, 290, 30, lift1Name6 + ":D", lift4JPanel6, dataMessage);
-        NewJPanel addressDataJPanel7 = new NewJPanel(addressDataJPanel, 290, 30, lift1Name7 + ":D", lift4JPanel7, dataMessage);
-        NewJPanel addressDataJPanel8 = new NewJPanel(addressDataJPanel, 290, 30, lift1Name8 + ":D", lift4JPanel8, dataMessage);
-        NewJPanel addressDataJPanel9 = new NewJPanel(addressDataJPanel, 290, 30, lift1Name9 + ":D", lift4JPanel9, dataMessage);
+        NewJPanel addressDataJPanel1 = new NewJPanel(addressDataJPanel, 250, 30, lift1Name1 + ":D", lift4JPanel1, dataMessage);
+        NewJPanel addressDataJPanel2 = new NewJPanel(addressDataJPanel, 250, 30, lift1Name2 + ":D", lift4JPanel2, dataMessage);
+        NewJPanel addressDataJPanel3 = new NewJPanel(addressDataJPanel, 250, 30, lift1Name3 + ":D", lift4JPanel3, dataMessage);
+        NewJPanel addressDataJPanel4 = new NewJPanel(addressDataJPanel, 250, 30, lift1Name4 + ":D", lift4JPanel4, dataMessage);
+        NewJPanel addressDataJPanel5 = new NewJPanel(addressDataJPanel, 250, 30, lift1Name5 + ":D", lift4JPanel5, dataMessage);
+        NewJPanel addressDataJPanel6 = new NewJPanel(addressDataJPanel, 250, 30, lift1Name6 + ":D", lift4JPanel6, dataMessage);
+        NewJPanel addressDataJPanel7 = new NewJPanel(addressDataJPanel, 250, 30, lift1Name7 + ":D", lift4JPanel7, dataMessage);
+        NewJPanel addressDataJPanel8 = new NewJPanel(addressDataJPanel, 250, 30, lift1Name8 + ":D", lift4JPanel8, dataMessage);
+        NewJPanel addressDataJPanel81 = new NewJPanel(addressDataJPanel, 250, 30, "步进细分", lift4JPanel8, dataMessage, "步进细分", "步进细分");
+        NewJPanel addressDataJPanel9 = new NewJPanel(addressDataJPanel, 250, 30, lift1Name9 + ":D", lift4JPanel9, dataMessage);
         addressDataJPanel1.setVisible(b1);
         addressDataJPanel2.setVisible(b2);
         addressDataJPanel3.setVisible(b3);
@@ -265,6 +266,7 @@ public class FirstWindow extends JFrame {
         addressDataJPanel6.setVisible(b6);
         addressDataJPanel7.setVisible(b7);
         addressDataJPanel8.setVisible(b8);
+        addressDataJPanel81.setVisible(b8);
         addressDataJPanel9.setVisible(b9);
 
 
@@ -311,34 +313,34 @@ public class FirstWindow extends JFrame {
         //中部主功能四级中间JPanel1
         String middle4Name1 = "上升";
         String middle4Name2 = "下降";
-        String middle4Name3 = "停止";
-        String middle4Name4 = "功能1";
-        String middle4Name5 = "功能2";
-        String middle4Name6 = "功能3";
+        String middle4Name3 = "启动";
+        String middle4Name4 = "停止";
+        String middle4Name5 = "回原点";
+        String middle4Name6 = "功能1";
         String middle4Name7 = "功能4";
         String middle4Name8 = "功能5";
         String middle4Name9 = "功能6";
         String middle4Name10 = "功能7";
         boolean b11 = true;
         boolean b22 = true;
-        boolean b33 = false;
-        boolean b44 = false;
-        boolean b55 = false;
-        boolean b66 = false;
+        boolean b33 = true;
+        boolean b44 = true;
+        boolean b55 = true;
+        boolean b66 = true;
         boolean b77 = false;
         boolean b88 = false;
         boolean b99 = false;
         boolean b100 = false;
-        NewJPanel middle4JPanel1 = new NewJPanel(middle3JPanel1, 155, 30, middle4Name1, 100, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 1, "M");//addressData默认地址  choose：1按下true松开false  2第一次true第二次false 3 M线圈 Y线圈
-        NewJPanel middle4JPanel2 = new NewJPanel(middle3JPanel1, 155, 30, middle4Name2, 111, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 1, "M");
-        NewJPanel middle4JPanel3 = new NewJPanel(middle3JPanel1, 155, 30, middle4Name3, 2, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 1, "Y");
-        NewJPanel middle4JPanel4 = new NewJPanel(middle3JPanel1, 155, 30, middle4Name4, 3, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 2, "Y");
-        NewJPanel middle4JPanel5 = new NewJPanel(middle3JPanel1, 155, 30, middle4Name5, 4, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 2, "M");
-        NewJPanel middle4JPanel6 = new NewJPanel(middle3JPanel1, 155, 30, middle4Name6, 5, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 2, "M");
-        NewJPanel middle4JPanel7 = new NewJPanel(middle3JPanel1, 155, 30, middle4Name7, 6, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 2, "M");
-        NewJPanel middle4JPanel8 = new NewJPanel(middle3JPanel1, 155, 30, middle4Name8, 7, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 2, "M");
-        NewJPanel middle4JPanel9 = new NewJPanel(middle3JPanel1, 155, 30, middle4Name9, 8, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 2, "M");
-        NewJPanel middle4JPanel10 = new NewJPanel(middle3JPanel1, 155, 30, middle4Name10, 9, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 2, "M");
+        NewJPanel middle4JPanel1 = new NewJPanel(middle3JPanel1, 160, 30, middle4Name1, 100, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 1, "M");//addressData默认地址  choose：1按下true松开false  2第一次true第二次false 3 M线圈 Y线圈
+        NewJPanel middle4JPanel2 = new NewJPanel(middle3JPanel1, 160, 30, middle4Name2, 111, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 1, "M");
+        NewJPanel middle4JPanel3 = new NewJPanel(middle3JPanel1, 160, 30, middle4Name3, 20, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 1, "M");
+        NewJPanel middle4JPanel4 = new NewJPanel(middle3JPanel1, 160, 30, middle4Name4, 30, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 1, "M");
+        NewJPanel middle4JPanel5 = new NewJPanel(middle3JPanel1, 160, 30, middle4Name5, 10, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 2, "M");
+        NewJPanel middle4JPanel6 = new NewJPanel(middle3JPanel1, 160, 30, middle4Name6, 40, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 2, "M");
+        NewJPanel middle4JPanel7 = new NewJPanel(middle3JPanel1, 160, 30, middle4Name7, 6, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 2, "M");
+        NewJPanel middle4JPanel8 = new NewJPanel(middle3JPanel1, 160, 30, middle4Name8, 7, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 2, "M");
+        NewJPanel middle4JPanel9 = new NewJPanel(middle3JPanel1, 160, 30, middle4Name9, 8, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 2, "M");
+        NewJPanel middle4JPanel10 = new NewJPanel(middle3JPanel1, 160, 30, middle4Name10, 9, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 2, "M");
         middle4JPanel1.setVisible(b11);
         middle4JPanel2.setVisible(b22);
         middle4JPanel3.setVisible(b33);

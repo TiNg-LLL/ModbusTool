@@ -8,6 +8,7 @@ import java.awt.event.*;
 public class NewJPanel extends JPanel {
     JLabel jLabel1;
     int i;
+    int bujinxifen;
     JTextField jTextField;
     DataTreat dataTreat = new DataTreat();
     JComboBox<String> jComboBox = new JComboBox<String>();
@@ -59,15 +60,86 @@ public class NewJPanel extends JPanel {
                         e1.printStackTrace();
                     }
                 } else {
-                    jLabel2.setText("端口未连接");
+                    jLabel2.setText(jLabelName + "：端口未连接");
                 }
+            }
+        });
+    }
+
+    public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, int addressData, Modbus modbus, int slaveId, JLabel jLabel2, int dataMM) {   //左侧四级JPanel
+        setPreferredSize(new Dimension(width, height));
+        setLayout(new FlowLayout(FlowLayout.LEFT, 5, 2));
+        /**setBackground(Color.LIGHT_GRAY);*/
+        JLabel jLabel = new JLabel(jLabelName);
+        jLabel.setFont(new Font("宋体", Font.PLAIN, 12));
+        JTextField jTextField = new JTextField(6);
+        JButton jButton = new JButton("设置");
+        jLabel1 = new JLabel("当前值:                         ");
+        jLabel1.setFont(new Font("宋体", Font.PLAIN, 12));
+        add(jLabel);
+        add(jTextField);
+        add(jButton);
+        add(jLabel1);
+        jPanel.add(this);
+        this.changeAddress(addressData);
+
+        jButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (modbus.ModbusisConnected()) {
+                    try {
+                        float f = Float.parseFloat(jTextField.getText());
+                        int a = (int) ((f / 0.5 * 12 * bujinxifen) / 10);
+                        if (a < 32768) {
+                            modbus.ModbuswriteSingleRegister(slaveId, i, a);
+                            modbus.ModbuswriteSingleRegister(slaveId, i + 1, 0);
+                            jLabel2.setText(jLabelName + "---设置成功");
+                        } else {
+                            if (a < 65536) {
+                                modbus.ModbuswriteSingleRegister(slaveId, i, a);
+                                modbus.ModbuswriteSingleRegister(slaveId, i + 1, 0);
+                                jLabel2.setText(jLabelName + "---设置成功");
+                            } else {
+                                modbus.ModbuswriteSingleRegister(slaveId, i, dataTreat.tenToBinary(a)[0]);
+                                modbus.ModbuswriteSingleRegister(slaveId, i + 1, dataTreat.tenToBinary(a)[1]);
+                                jLabel2.setText(jLabelName + "---设置成功");
+                            }
+                        }
+                    } catch (Exception e1) {
+                        jLabel2.setText(jLabelName + "---设置失败");
+                        e1.printStackTrace();
+                    }
+                } else {
+                    jLabel2.setText(jLabelName + "：端口未连接");
+                }
+            }
+        });
+    }
+
+    public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, NewJPanel newJPanel, JLabel jLabel2, String bujinxifen, String bujinxifen1) {   //左侧地址参数设置JPanel 步进细分
+        setPreferredSize(new Dimension(width, height));
+        setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 2));
+        /**setBackground(Color.LIGHT_GRAY);*/
+        JLabel jLabel = new JLabel(jLabelName);
+        jLabel.setFont(new Font("宋体", Font.PLAIN, 12));
+        jTextField = new JTextField(6);
+        jTextField.setText("6400");
+        JButton jButton = new JButton("设置");
+        add(jLabel);
+        add(jTextField);
+        add(jButton);
+        jPanel.add(this);
+        newJPanel.setbujinxifen(Integer.valueOf(jTextField.getText()));
+
+        jButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                newJPanel.setbujinxifen(Integer.valueOf(jTextField.getText()));
             }
         });
     }
 
     public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, NewJPanel newJPanel, JLabel jLabel2) {   //左侧地址参数设置JPanel
         setPreferredSize(new Dimension(width, height));
-        setLayout(new FlowLayout(FlowLayout.LEFT, 5, 2));
+        setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 2));
         /**setBackground(Color.LIGHT_GRAY);*/
         JLabel jLabel = new JLabel(jLabelName);
         jLabel.setFont(new Font("宋体", Font.PLAIN, 12));
@@ -240,6 +312,10 @@ public class NewJPanel extends JPanel {
 
     public int getAddress() {
         return i;
+    }
+
+    public void setbujinxifen(int bujinxifen) {
+        this.bujinxifen = bujinxifen;
     }
 
     public void changeAddress(int i) {
