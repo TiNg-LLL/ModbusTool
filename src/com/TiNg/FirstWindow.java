@@ -33,7 +33,8 @@ public class FirstWindow extends JFrame {
 
         //底部信息输出JPanel
         JPanel bottonJPanel = new JPanel();
-        bottonJPanel.setPreferredSize(new Dimension(800, 25));
+        bottonJPanel.setPreferredSize(new Dimension(700, 25));
+        bottonJPanel.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 5));
         bottonJPanel.setLayout(new BorderLayout());
         bottonJPanel.setBackground(Color.LIGHT_GRAY);
         add(bottonJPanel, BorderLayout.SOUTH);
