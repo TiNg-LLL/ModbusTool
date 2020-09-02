@@ -408,15 +408,35 @@ public class FirstWindow extends JFrame {
         setVisible(true);
 
         //读取线程
+
         class ReadThread extends Thread {
+            final int[] ii = {1};
+
             public void run() {
                 while (true) {
                     try {
-                        Thread.sleep(5);
+                        Thread.sleep(1);
                     } catch (Exception e) {
                     }
                     try {
                         if (modbus.ModbusisConnected()) {
+                            if (ii[0] == 1) {
+                                comMessage.setText("COM口已连接成功");
+                            } else if (ii[0] == 2) {
+                                comMessage.setText("COM口已连接成功》");
+                            } else if (ii[0] == 3) {
+                                comMessage.setText("COM口已连接成功》》");
+                            } else if (ii[0] == 4) {
+                                comMessage.setText("COM口已连接成功》》》");
+                            } else if (ii[0] == 5) {
+                                comMessage.setText("COM口已连接成功《《《");
+                            } else if (ii[0] == 6) {
+                                comMessage.setText("COM口已连接成功《《");
+                            } else if (ii[0] == 7) {
+                                comMessage.setText("COM口已连接成功《");
+                                ii[0] = 0;
+                            }
+                            ii[0]++;
                             int[] i1 = modbus.ModbusreadHoldingRegisters(Integer.valueOf(comAddressJTextField.getText()), lift4JPanel1.getAddress(), 2);
                             int[] i2 = modbus.ModbusreadHoldingRegisters(Integer.valueOf(comAddressJTextField.getText()), lift4JPanel2.getAddress(), 2);
                             int[] i3 = modbus.ModbusreadHoldingRegisters(Integer.valueOf(comAddressJTextField.getText()), lift4JPanel3.getAddress(), 2);
@@ -504,6 +524,7 @@ public class FirstWindow extends JFrame {
                 }
             }
         }
+
         ;
         ReadThread readThread = new ReadThread();
         readThread.start();
