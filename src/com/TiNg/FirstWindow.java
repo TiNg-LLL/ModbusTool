@@ -243,7 +243,7 @@ public class FirstWindow extends JFrame {
         //中部地址参数设置左侧弹窗
         String addressDataWindowName = "地址参数设置";
         int addressDataWindowWidth = 280;
-        int addressDataWindowHeight = 380;
+        int addressDataWindowHeight = 410;
         NewWindow addressDataWindow = new NewWindow(addressDataWindowName, addressDataWindowWidth, addressDataWindowHeight);
         JPanel addressDataJPanel = new JPanel();
         addressDataJPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -256,7 +256,8 @@ public class FirstWindow extends JFrame {
         NewJPanel addressDataJPanel6 = new NewJPanel(addressDataJPanel, 250, 30, lift1Name6 + ":D", lift4JPanel6, dataMessage);
         NewJPanel addressDataJPanel7 = new NewJPanel(addressDataJPanel, 250, 30, lift1Name7 + ":D", lift4JPanel7, dataMessage);
         NewJPanel addressDataJPanel8 = new NewJPanel(addressDataJPanel, 250, 30, lift1Name8 + ":D", lift4JPanel8, dataMessage);
-        NewJPanel addressDataJPanel81 = new NewJPanel(addressDataJPanel, 250, 30, "步进细分", lift4JPanel8, dataMessage, "步进细分", "步进细分");
+        NewJPanel addressDataJPanel81 = new NewJPanel(addressDataJPanel, 250, 30, "步进细分", lift4JPanel8, dataMessage, "步进细分", 1);
+        NewJPanel addressDataJPanel82 = new NewJPanel(addressDataJPanel, 250, 30, "物理速比", lift4JPanel8, dataMessage, "物理速比", 2);
         NewJPanel addressDataJPanel9 = new NewJPanel(addressDataJPanel, 250, 30, lift1Name9 + ":D", lift4JPanel9, dataMessage);
         addressDataJPanel1.setVisible(b1);
         addressDataJPanel2.setVisible(b2);
@@ -267,6 +268,7 @@ public class FirstWindow extends JFrame {
         addressDataJPanel7.setVisible(b7);
         addressDataJPanel8.setVisible(b8);
         addressDataJPanel81.setVisible(b8);
+        addressDataJPanel82.setVisible(b8);
         addressDataJPanel9.setVisible(b9);
 
 

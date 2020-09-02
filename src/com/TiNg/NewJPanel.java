@@ -9,6 +9,7 @@ public class NewJPanel extends JPanel {
     JLabel jLabel1;
     int i;
     int bujinxifen;
+    int wulisubi;
     JTextField jTextField;
     DataTreat dataTreat = new DataTreat();
     JComboBox<String> jComboBox = new JComboBox<String>();
@@ -88,7 +89,7 @@ public class NewJPanel extends JPanel {
                 if (modbus.ModbusisConnected()) {
                     try {
                         float f = Float.parseFloat(jTextField.getText());
-                        int a = (int) ((f / 0.5 * 12 * bujinxifen) / 10);
+                        int a = (int) ((f / 0.5 * wulisubi * bujinxifen) / 10);
                         if (a < 32768) {
                             modbus.ModbuswriteSingleRegister(slaveId, i, a);
                             modbus.ModbuswriteSingleRegister(slaveId, i + 1, 0);
@@ -115,26 +116,36 @@ public class NewJPanel extends JPanel {
         });
     }
 
-    public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, NewJPanel newJPanel, JLabel jLabel2, String bujinxifen, String bujinxifen1) {   //左侧地址参数设置JPanel 步进细分
+    public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, NewJPanel newJPanel, JLabel jLabel2, String xifensubi, int bw) {   //左侧地址参数设置JPanel 步进细分
         setPreferredSize(new Dimension(width, height));
         setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 2));
         /**setBackground(Color.LIGHT_GRAY);*/
         JLabel jLabel = new JLabel(jLabelName);
         jLabel.setFont(new Font("宋体", Font.PLAIN, 12));
         jTextField = new JTextField(6);
-        jTextField.setText("6400");
         JButton jButton = new JButton("设置");
         add(jLabel);
         add(jTextField);
         add(jButton);
         jPanel.add(this);
-        newJPanel.setbujinxifen(Integer.valueOf(jTextField.getText()));
 
-        jButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                newJPanel.setbujinxifen(Integer.valueOf(jTextField.getText()));
-            }
-        });
+        if (bw == 1) {
+            jTextField.setText("6400"); //初始步进细分
+            newJPanel.setbujinxifen(Integer.valueOf(jTextField.getText()));
+            jButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    newJPanel.setbujinxifen(Integer.valueOf(jTextField.getText()));
+                }
+            });
+        } else if (bw == 2) {
+            jTextField.setText("12");  //初始物理速比
+            newJPanel.setwulisubi(Integer.valueOf(jTextField.getText()));
+            jButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    newJPanel.setwulisubi(Integer.valueOf(jTextField.getText()));
+                }
+            });
+        }
     }
 
     public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, NewJPanel newJPanel, JLabel jLabel2) {   //左侧地址参数设置JPanel
@@ -316,6 +327,10 @@ public class NewJPanel extends JPanel {
 
     public void setbujinxifen(int bujinxifen) {
         this.bujinxifen = bujinxifen;
+    }
+
+    public void setwulisubi(int wulisubi) {
+        this.wulisubi = wulisubi;
     }
 
     public void changeAddress(int i) {
