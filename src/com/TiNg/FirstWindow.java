@@ -142,26 +142,32 @@ public class FirstWindow extends JFrame {
                 if (connectButton.getText().equals("连接")) {
                     modbus.ModbusConnect(comName, baudrate, dataBit, stopBit, doubleEven);
                     if (modbus.ModbusisConnected()) {
-                        System.out.println("COM口已连接成功");
-                        comMessage.setText("COM口已连接成功");
+                        System.out.println("COM端口已连接成功");
+                        comMessage.setText("COM端口已连接成功");
+                        dataMessage.setText(" ");
                         comList.setEnabled(false);
                         comflashButton.setEnabled(false);
                         comDataSetButton.setEnabled(false);
                         connectButton.setText("断开");
                         top1JPanel.setBackground(Color.GREEN);
                     } else {
-                        System.out.println("COM口连接失败");
-                        comMessage.setText("COM口连接失败");
+                        System.out.println("COM端口连接失败");
+                        comMessage.setText("COM端口连接失败");
                     }
                 } else {
                     modbus.ModbusDisconnect();
-                    System.out.println("COM口已断开");
-                    comMessage.setText("COM口已断开");
+                    System.out.println("COM端口已断开");
+                    comMessage.setText("COM端口已断开");
                     comList.setEnabled(true);
                     comflashButton.setEnabled(true);
                     comDataSetButton.setEnabled(true);
                     connectButton.setText("连接");
                     top1JPanel.setBackground(Color.LIGHT_GRAY);
+                    try {
+                        Thread.sleep(100);
+                    } catch (Exception e1) {
+                    }
+                    dataMessage.setText(" ");
                 }
             }
         });
@@ -422,19 +428,19 @@ public class FirstWindow extends JFrame {
                     try {
                         if (modbus.ModbusisConnected()) {
                             if (ii[0] == 1) {
-                                comMessage.setText("COM口已连接成功");
+                                comMessage.setText("COM端口已连接成功");
                             } else if (ii[0] == 2) {
-                                comMessage.setText("COM口已连接成功》");
+                                comMessage.setText("COM端口已连接成功》");
                             } else if (ii[0] == 3) {
-                                comMessage.setText("COM口已连接成功》》");
+                                comMessage.setText("COM端口已连接成功》》");
                             } else if (ii[0] == 4) {
-                                comMessage.setText("COM口已连接成功》》》");
+                                comMessage.setText("COM端口已连接成功》》》");
                             } else if (ii[0] == 5) {
-                                comMessage.setText("COM口已连接成功《《《");
+                                comMessage.setText("COM端口已连接成功《《《");
                             } else if (ii[0] == 6) {
-                                comMessage.setText("COM口已连接成功《《");
+                                comMessage.setText("COM端口已连接成功《《");
                             } else if (ii[0] == 7) {
-                                comMessage.setText("COM口已连接成功《");
+                                comMessage.setText("COM端口已连接成功《");
                                 ii[0] = 0;
                             }
                             ii[0]++;
@@ -499,8 +505,6 @@ public class FirstWindow extends JFrame {
                             middle4JPanel10.setNowData().setText("当前值：");
                         }
                     } catch (Exception e) {
-                        System.out.println("COM端无返回值");
-                        dataMessage.setText("COM端无返回值");
                         lift4JPanel1.setNowData().setText("当前值：null");
                         lift4JPanel2.setNowData().setText("当前值：null");
                         lift4JPanel3.setNowData().setText("当前值：null");
@@ -520,6 +524,8 @@ public class FirstWindow extends JFrame {
                         middle4JPanel8.setNowData().setText("当前值：null");
                         middle4JPanel9.setNowData().setText("当前值：null");
                         middle4JPanel10.setNowData().setText("当前值：null");
+                        System.out.println("COM端口无返回值，或被占用");
+                        dataMessage.setText("COM端口无返回值，或被占用");
                         e.printStackTrace();
                     }
                 }
