@@ -180,7 +180,7 @@ public class FirstWindow extends JFrame {
         //中部主功能二级左侧JPanel1----------------------------------------------------------------------------------------
         JPanel middle2JPanel1 = new JPanel();
         middle2JPanel1.setPreferredSize(new Dimension(340, 360));
-        middle2JPanel1.setLayout(new FlowLayout(FlowLayout.LEFT, 15, 5));
+        middle2JPanel1.setLayout(new FlowLayout(FlowLayout.LEFT, 12, 5));
         /**middle2JPanel1.setBackground(Color.GREEN);*/
         middle1JPanel.add(middle2JPanel1, BorderLayout.CENTER);
 
@@ -286,21 +286,21 @@ public class FirstWindow extends JFrame {
 
         //中部主功能二级中间JPanel2----------------------------------------------------------------------------------------
         JPanel middle2JPanel2 = new JPanel();
-        middle2JPanel2.setPreferredSize(new Dimension(330, 360));
+        middle2JPanel2.setPreferredSize(new Dimension(340, 360));
         middle2JPanel2.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
         /**middle2JPanel2.setBackground(Color.BLUE);*/
         middle1JPanel.add(middle2JPanel2, BorderLayout.CENTER);
 
         //中部主功能三级中间JPanel1
         JPanel middle3JPanel1 = new JPanel();
-        middle3JPanel1.setPreferredSize(new Dimension(330, 190));
+        middle3JPanel1.setPreferredSize(new Dimension(340, 190));
         middle3JPanel1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         /**middle3JPanel1.setBackground(Color.DARK_GRAY);*/
         middle2JPanel2.add(middle3JPanel1, BorderLayout.NORTH);
 
         //中部主功能三级中间JPanel3
         JPanel middle3JPanel3 = new JPanel();
-        middle3JPanel3.setPreferredSize(new Dimension(330, 118));
+        middle3JPanel3.setPreferredSize(new Dimension(340, 118));
         middle3JPanel3.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         /**middle3JPanel3.setBackground(Color.BLUE);*/
         middle2JPanel2.add(middle3JPanel3, BorderLayout.CENTER);
@@ -333,16 +333,16 @@ public class FirstWindow extends JFrame {
         boolean b88 = false;
         boolean b99 = false;
         boolean b100 = false;
-        NewJPanel middle4JPanel1 = new NewJPanel(middle3JPanel1, 160, 30, middle4Name1, 100, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 1, "M");//addressData默认地址  choose：1按下true松开false  2第一次true第二次false 3 M线圈 Y线圈
-        NewJPanel middle4JPanel2 = new NewJPanel(middle3JPanel1, 160, 30, middle4Name2, 111, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 1, "M");
-        NewJPanel middle4JPanel3 = new NewJPanel(middle3JPanel1, 160, 30, middle4Name3, 20, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 1, "M");
-        NewJPanel middle4JPanel4 = new NewJPanel(middle3JPanel1, 160, 30, middle4Name4, 30, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 1, "M");
-        NewJPanel middle4JPanel5 = new NewJPanel(middle3JPanel1, 160, 30, middle4Name5, 10, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 2, "M");
-        NewJPanel middle4JPanel6 = new NewJPanel(middle3JPanel1, 160, 30, middle4Name6, 40, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 2, "M");
-        NewJPanel middle4JPanel7 = new NewJPanel(middle3JPanel1, 160, 30, middle4Name7, 6, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 2, "M");
-        NewJPanel middle4JPanel8 = new NewJPanel(middle3JPanel1, 160, 30, middle4Name8, 7, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 2, "M");
-        NewJPanel middle4JPanel9 = new NewJPanel(middle3JPanel1, 160, 30, middle4Name9, 8, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 2, "M");
-        NewJPanel middle4JPanel10 = new NewJPanel(middle3JPanel1, 160, 30, middle4Name10, 9, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 2, "M");
+        NewJPanel middle4JPanel1 = new NewJPanel(middle3JPanel1, 165, 30, middle4Name1, 100, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 1, "M");//addressData默认地址  choose：1按下true松开false  2第一次true第二次false 3 M线圈 Y线圈
+        NewJPanel middle4JPanel2 = new NewJPanel(middle3JPanel1, 165, 30, middle4Name2, 111, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 1, "M");
+        NewJPanel middle4JPanel3 = new NewJPanel(middle3JPanel1, 165, 30, middle4Name3, 20, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 1, "M");
+        NewJPanel middle4JPanel4 = new NewJPanel(middle3JPanel1, 165, 30, middle4Name4, 30, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 1, "M");
+        NewJPanel middle4JPanel5 = new NewJPanel(middle3JPanel1, 165, 30, middle4Name5, 10, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 2, "M");
+        NewJPanel middle4JPanel6 = new NewJPanel(middle3JPanel1, 165, 30, middle4Name6, 40, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 2, "M");
+        NewJPanel middle4JPanel7 = new NewJPanel(middle3JPanel1, 165, 30, middle4Name7, 6, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 2, "M");
+        NewJPanel middle4JPanel8 = new NewJPanel(middle3JPanel1, 165, 30, middle4Name8, 7, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 2, "M");
+        NewJPanel middle4JPanel9 = new NewJPanel(middle3JPanel1, 165, 30, middle4Name9, 8, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 2, "M");
+        NewJPanel middle4JPanel10 = new NewJPanel(middle3JPanel1, 165, 30, middle4Name10, 9, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 2, "M");
         middle4JPanel1.setVisible(b11);
         middle4JPanel2.setVisible(b22);
         middle4JPanel3.setVisible(b33);
@@ -371,16 +371,16 @@ public class FirstWindow extends JFrame {
         JPanel coiladdressDataJPanel = new JPanel();
         coiladdressDataJPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         coiladdressDataWindow.add(coiladdressDataJPanel);
-        NewJPanel coiladdressDataJPanel1 = new NewJPanel(coiladdressDataJPanel, 280, 30, middle4Name1, middle4JPanel1, dataMessage, "没卵用");
-        NewJPanel coiladdressDataJPanel2 = new NewJPanel(coiladdressDataJPanel, 280, 30, middle4Name2, middle4JPanel2, dataMessage, "没卵用");
-        NewJPanel coiladdressDataJPanel3 = new NewJPanel(coiladdressDataJPanel, 280, 30, middle4Name3, middle4JPanel3, dataMessage, "没卵用");
-        NewJPanel coiladdressDataJPanel4 = new NewJPanel(coiladdressDataJPanel, 280, 30, middle4Name4, middle4JPanel4, dataMessage, "没卵用");
-        NewJPanel coiladdressDataJPanel5 = new NewJPanel(coiladdressDataJPanel, 280, 30, middle4Name5, middle4JPanel5, dataMessage, "没卵用");
-        NewJPanel coiladdressDataJPanel6 = new NewJPanel(coiladdressDataJPanel, 280, 30, middle4Name6, middle4JPanel6, dataMessage, "没卵用");
-        NewJPanel coiladdressDataJPanel7 = new NewJPanel(coiladdressDataJPanel, 280, 30, middle4Name7, middle4JPanel7, dataMessage, "没卵用");
-        NewJPanel coiladdressDataJPanel8 = new NewJPanel(coiladdressDataJPanel, 280, 30, middle4Name8, middle4JPanel8, dataMessage, "没卵用");
-        NewJPanel coiladdressDataJPanel9 = new NewJPanel(coiladdressDataJPanel, 280, 30, middle4Name9, middle4JPanel9, dataMessage, "没卵用");
-        NewJPanel coiladdressDataJPanel10 = new NewJPanel(coiladdressDataJPanel, 280, 30, middle4Name10, middle4JPanel10, dataMessage, "没卵用");
+        NewJPanel coiladdressDataJPanel1 = new NewJPanel(coiladdressDataJPanel, 290, 30, middle4Name1, middle4JPanel1, dataMessage, "没卵用");
+        NewJPanel coiladdressDataJPanel2 = new NewJPanel(coiladdressDataJPanel, 290, 30, middle4Name2, middle4JPanel2, dataMessage, "没卵用");
+        NewJPanel coiladdressDataJPanel3 = new NewJPanel(coiladdressDataJPanel, 290, 30, middle4Name3, middle4JPanel3, dataMessage, "没卵用");
+        NewJPanel coiladdressDataJPanel4 = new NewJPanel(coiladdressDataJPanel, 290, 30, middle4Name4, middle4JPanel4, dataMessage, "没卵用");
+        NewJPanel coiladdressDataJPanel5 = new NewJPanel(coiladdressDataJPanel, 290, 30, middle4Name5, middle4JPanel5, dataMessage, "没卵用");
+        NewJPanel coiladdressDataJPanel6 = new NewJPanel(coiladdressDataJPanel, 290, 30, middle4Name6, middle4JPanel6, dataMessage, "没卵用");
+        NewJPanel coiladdressDataJPanel7 = new NewJPanel(coiladdressDataJPanel, 290, 30, middle4Name7, middle4JPanel7, dataMessage, "没卵用");
+        NewJPanel coiladdressDataJPanel8 = new NewJPanel(coiladdressDataJPanel, 290, 30, middle4Name8, middle4JPanel8, dataMessage, "没卵用");
+        NewJPanel coiladdressDataJPanel9 = new NewJPanel(coiladdressDataJPanel, 290, 30, middle4Name9, middle4JPanel9, dataMessage, "没卵用");
+        NewJPanel coiladdressDataJPanel10 = new NewJPanel(coiladdressDataJPanel, 290, 30, middle4Name10, middle4JPanel10, dataMessage, "没卵用");
         coiladdressDataJPanel1.setVisible(b11);
         coiladdressDataJPanel2.setVisible(b22);
         coiladdressDataJPanel3.setVisible(b33);
