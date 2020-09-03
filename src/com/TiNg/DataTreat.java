@@ -30,6 +30,7 @@ public class DataTreat {
         String s1 = Integer.toBinaryString(i[1]);
         String s2 = s1 + s;
         int i2 = Integer.valueOf(s2, 2);
+        System.out.println(i2);
         float i4 = (float) i2;
         float i3 = (i4 * 5 / newJPanel.getwulisubi() / newJPanel.getbujinxifen());
         return i3;

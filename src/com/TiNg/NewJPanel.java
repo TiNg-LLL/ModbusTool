@@ -158,7 +158,7 @@ public class NewJPanel extends JPanel {
         jPanel.add(this);
 
         if (bw == 1) {
-            jTextField.setText("6400"); //初始步进细分
+            jTextField.setText(xifensubi); //初始步进细分
             for (int j = 0; j < newJPanel.length; j++) {
                 newJPanel[j].setbujinxifen(Integer.valueOf(jTextField.getText()));
             }
@@ -170,7 +170,7 @@ public class NewJPanel extends JPanel {
                 }
             });
         } else if (bw == 2) {
-            jTextField.setText("12");  //初始物理速比
+            jTextField.setText(xifensubi);  //初始物理速比
             for (int j = 0; j < newJPanel.length; j++) {
                 newJPanel[j].setwulisubi(Integer.valueOf(jTextField.getText()));
             }
@@ -297,10 +297,10 @@ public class NewJPanel extends JPanel {
             jComboBox.setSelectedIndex(0);
             jTextField.setText(String.valueOf(newJPanel.getAddress()));
         } else if (newJPanel.getMory().equals("X")) {
-            jComboBox.setSelectedIndex(1);
+            jComboBox.setSelectedIndex(2);
             jTextField.setText(String.valueOf(newJPanel.getAddress() - 16384));
         } else {
-            jComboBox.setSelectedIndex(2);
+            jComboBox.setSelectedIndex(1);
             jTextField.setText(String.valueOf(newJPanel.getAddress() - 18432));
         }
         JButton jButton1 = new JButton("应用");
@@ -319,7 +319,7 @@ public class NewJPanel extends JPanel {
 
         jButton1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                newJPanel.coilChangeAddress(Integer.valueOf(jTextField.getText()), jComboBox);
+                newJPanel.coilChangeAddress(Integer.valueOf(jTextField.getText()), jComboBox, jLabel2);
                 if (choosejComboBox.getSelectedIndex() == 0) {
                     try {
                         newJPanel.getJButton().removeActionListener(newJPanel.getJButton().getActionListeners()[0]);
@@ -406,7 +406,7 @@ public class NewJPanel extends JPanel {
         }
     }
 
-    public void coilChangeAddress(int i, JComboBox jComboBox) {
+    public void coilChangeAddress(int i, JComboBox jComboBox, JLabel jLabel) {
         if (jComboBox.getSelectedIndex() == 0) {
             if (i < 8000) {
                 this.i = i;
@@ -415,15 +415,19 @@ public class NewJPanel extends JPanel {
             }
         } else if (jComboBox.getSelectedIndex() == 1) {
             if (i < 8) {
-                i = i + 18432;
+                this.i = i + 18432;
+            } else if (i == 8 || i == 9) {
+                jLabel.setText("Y地址错误");
             } else {
-                i = i + 18430;
+                this.i = i + 18430;
             }
-        } else {
+        } else if (jComboBox.getSelectedIndex() == 2) {
             if (i < 8) {
-                i = i + 16384;
+                this.i = i + 16384;
+            } else if (i == 8 || i == 9) {
+                jLabel.setText("Y地址错误");
             } else {
-                i = i + 16382;
+                this.i = i + 16382;
             }
         }
     }
