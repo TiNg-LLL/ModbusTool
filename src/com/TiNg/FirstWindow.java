@@ -361,7 +361,7 @@ public class FirstWindow extends JFrame {
         NewJPanel middle4JPanel31 = new NewJPanel(middle3JPanel3, 155, 30, middle4Name31, 0, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage,"没卵用1");
         NewJPanel middle4JPanel32 = new NewJPanel(middle3JPanel3, 155, 30, middle4Name32, 0, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage,"没卵用1");*/
 
-        //中部通用设置弹窗
+        //中部通用设置弹窗-------------------------------------------------------------------------------------------------
         String alladdressDataWindowName = "权限";
         int alladdressDataWindowWidth = 400;
         int alladdressDataWindowHeight = 100;
@@ -408,10 +408,11 @@ public class FirstWindow extends JFrame {
 
         jButtonPassward.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (Integer.parseInt(jPasswordFieldPassward.getText()) == 123456) {
+                if (String.valueOf(jPasswordFieldPassward.getPassword()).equals("123456")) {
                     alladdressDataWindow.setVisible(false);
                     alladdressDataSetButton.setText("退出");
                     jPasswordFieldPassward.setText("");
+                    dataMessage.setText("登入成功");
                     for (int i = 0; i < newJPanelss.length; i++) {
                         newJPanelss[i].getJButton().setEnabled(true);
                         if (!((newJPanelss[i].getJTextField()) == null)) {
