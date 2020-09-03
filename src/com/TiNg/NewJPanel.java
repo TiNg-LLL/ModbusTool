@@ -10,6 +10,7 @@ public class NewJPanel extends JPanel {
     int i;
     int bujinxifen;
     int wulisubi;
+    int maxdataMM;
     JTextField jTextField;
     DataTreat dataTreat = new DataTreat();
     JComboBox<String> jComboBox = new JComboBox<String>();
@@ -25,7 +26,7 @@ public class NewJPanel extends JPanel {
         /**setBackground(Color.LIGHT_GRAY);*/
         JLabel jLabel = new JLabel(jLabelName);
         jLabel.setFont(new Font("宋体", Font.PLAIN, 12));
-        JTextField jTextField = new JTextField(6);
+        jTextField = new JTextField(6);
         jButton = new JButton("应用");
         jLabel1 = new JLabel("当前值:                         ");
         jLabel1.setFont(new Font("宋体", Font.PLAIN, 12));
@@ -73,7 +74,7 @@ public class NewJPanel extends JPanel {
         /**setBackground(Color.LIGHT_GRAY);*/
         JLabel jLabel = new JLabel(jLabelName);
         jLabel.setFont(new Font("宋体", Font.PLAIN, 12));
-        JTextField jTextField = new JTextField(6);
+        jTextField = new JTextField(6);
         jButton = new JButton("应用");
         jLabel1 = new JLabel("当前值:                         ");
         jLabel1.setFont(new Font("宋体", Font.PLAIN, 12));
@@ -83,6 +84,7 @@ public class NewJPanel extends JPanel {
         add(jLabel1);
         jPanel.add(this);
         this.changeAddress(addressData);
+        this.maxdataMM = maxdataMM;
 
         jButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -373,6 +375,14 @@ public class NewJPanel extends JPanel {
 
     public float getwulisubi() {
         return wulisubi;
+    }
+
+    public int getMaxDataMM() {
+        return maxdataMM;
+    }
+
+    public JTextField getJTextField() {
+        return jTextField;
     }
 
     public void changeAddress(int i) {

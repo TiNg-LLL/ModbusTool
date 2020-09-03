@@ -187,21 +187,21 @@ public class FirstWindow extends JFrame {
 
         //中部主功能二级左侧JPanel1----------------------------------------------------------------------------------------
         JPanel middle2JPanel1 = new JPanel();
-        middle2JPanel1.setPreferredSize(new Dimension(360, 360));
+        middle2JPanel1.setPreferredSize(new Dimension(370, 360));
         middle2JPanel1.setLayout(new FlowLayout(FlowLayout.LEFT, 12, 5));
         /**middle2JPanel1.setBackground(Color.GREEN);*/
         middle1JPanel.add(middle2JPanel1, BorderLayout.CENTER);
 
         //中部主功能三级左侧JPanel1
         JPanel lift3JPanel1 = new JPanel();
-        lift3JPanel1.setPreferredSize(new Dimension(360, 313));
+        lift3JPanel1.setPreferredSize(new Dimension(370, 313));
         lift3JPanel1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         /**lift3JPanel1.setBackground(Color.GREEN);*/
         middle2JPanel1.add(lift3JPanel1, BorderLayout.NORTH);
 
         //中部主功能三级左侧JPanel2
         JPanel lift3JPanel2 = new JPanel();
-        lift3JPanel2.setPreferredSize(new Dimension(360, 60));
+        lift3JPanel2.setPreferredSize(new Dimension(370, 60));
         lift3JPanel2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 0));
         /**lift3JPanel2.setBackground(Color.DARK_GRAY);*/
         middle2JPanel1.add(lift3JPanel2, BorderLayout.SOUTH);
@@ -212,8 +212,8 @@ public class FirstWindow extends JFrame {
         String lift1Name3 = "原点回归速度(m/s)";
         String lift1Name4 = "    爬行速度(m/s)";
         String lift1Name5 = "    移动速度(m/s)";
-        String lift1Name6 = "         上层位置";
-        String lift1Name7 = "         下层位置";
+        String lift1Name6 = "     上层位置(mm)";
+        String lift1Name7 = "     下层位置(mm)";
         String lift1Name8 = "     材料厚度(mm)";
         String lift1Name9 = "            延时2";
         boolean b1 = true;
@@ -225,15 +225,15 @@ public class FirstWindow extends JFrame {
         boolean b7 = true;
         boolean b8 = true;
         boolean b9 = false;
-        NewJPanel lift4JPanel1 = new NewJPanel(lift3JPanel1, 360, 30, lift1Name1, 4000, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 10);
-        NewJPanel lift4JPanel2 = new NewJPanel(lift3JPanel1, 360, 30, lift1Name2, 4004, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage);
-        NewJPanel lift4JPanel3 = new NewJPanel(lift3JPanel1, 360, 30, lift1Name3, 4010, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 10);
-        NewJPanel lift4JPanel4 = new NewJPanel(lift3JPanel1, 360, 30, lift1Name4, 4012, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 10);
-        NewJPanel lift4JPanel5 = new NewJPanel(lift3JPanel1, 360, 30, lift1Name5, 4102, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 10);
-        NewJPanel lift4JPanel6 = new NewJPanel(lift3JPanel1, 360, 30, lift1Name6, 4100, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 0);
-        NewJPanel lift4JPanel7 = new NewJPanel(lift3JPanel1, 360, 30, lift1Name7, 4110, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 0);
-        NewJPanel lift4JPanel8 = new NewJPanel(lift3JPanel1, 360, 30, lift1Name8, 4200, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 0);
-        NewJPanel lift4JPanel9 = new NewJPanel(lift3JPanel1, 360, 30, lift1Name9, 90, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage);
+        NewJPanel lift4JPanel1 = new NewJPanel(lift3JPanel1, 370, 30, lift1Name1, 4000, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 10);  //maxdataMM 10有限制最大值   0没有限制
+        NewJPanel lift4JPanel2 = new NewJPanel(lift3JPanel1, 370, 30, lift1Name2, 4004, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage);
+        NewJPanel lift4JPanel3 = new NewJPanel(lift3JPanel1, 370, 30, lift1Name3, 4010, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 10);
+        NewJPanel lift4JPanel4 = new NewJPanel(lift3JPanel1, 370, 30, lift1Name4, 4012, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 10);
+        NewJPanel lift4JPanel5 = new NewJPanel(lift3JPanel1, 370, 30, lift1Name5, 4102, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 10);
+        NewJPanel lift4JPanel6 = new NewJPanel(lift3JPanel1, 370, 30, lift1Name6, 4100, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 0);
+        NewJPanel lift4JPanel7 = new NewJPanel(lift3JPanel1, 370, 30, lift1Name7, 4110, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 0);
+        NewJPanel lift4JPanel8 = new NewJPanel(lift3JPanel1, 370, 30, lift1Name8, 4200, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 0);
+        NewJPanel lift4JPanel9 = new NewJPanel(lift3JPanel1, 370, 30, lift1Name9, 90, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage);
         lift4JPanel1.setVisible(b1);
         lift4JPanel2.setVisible(b2);
         lift4JPanel3.setVisible(b3);
@@ -379,6 +379,7 @@ public class FirstWindow extends JFrame {
         NewJPanel[] newJPanelss = {lift4JPanel1, lift4JPanel2, lift4JPanel3, lift4JPanel4, lift4JPanel5};
         for (int i = 0; i < newJPanelss.length; i++) {
             newJPanelss[i].getJButton().setEnabled(false);
+            newJPanelss[i].getJTextField().setEnabled(false);
         }
         addressDataSetButton.setEnabled(false);
         comDataSetButton.setEnabled(false);
@@ -391,6 +392,7 @@ public class FirstWindow extends JFrame {
                 } else {
                     for (int i = 0; i < newJPanelss.length; i++) {
                         newJPanelss[i].getJButton().setEnabled(false);
+                        newJPanelss[i].getJTextField().setEnabled(false);
                     }
                     addressDataSetButton.setEnabled(false);
                     comDataSetButton.setEnabled(false);
@@ -408,6 +410,7 @@ public class FirstWindow extends JFrame {
                     jPasswordFieldPassward.setText("");
                     for (int i = 0; i < newJPanelss.length; i++) {
                         newJPanelss[i].getJButton().setEnabled(true);
+                        newJPanelss[i].getJTextField().setEnabled(true);
                     }
                     addressDataSetButton.setEnabled(true);
                     comDataSetButton.setEnabled(true);
