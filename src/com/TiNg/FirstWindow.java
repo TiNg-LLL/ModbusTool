@@ -18,6 +18,7 @@ public class FirstWindow extends JFrame {
     int screenHeight = screenSize.height;           //获取屏幕的高
     Modbus modbus = new Modbus();
     DataTreat dataTreat = new DataTreat();
+    boolean passward = false;
 
     public FirstWindow(String windowName, int windowWidth, int windowHeight) {
 
@@ -186,35 +187,35 @@ public class FirstWindow extends JFrame {
 
         //中部主功能二级左侧JPanel1----------------------------------------------------------------------------------------
         JPanel middle2JPanel1 = new JPanel();
-        middle2JPanel1.setPreferredSize(new Dimension(340, 360));
+        middle2JPanel1.setPreferredSize(new Dimension(360, 360));
         middle2JPanel1.setLayout(new FlowLayout(FlowLayout.LEFT, 12, 5));
         /**middle2JPanel1.setBackground(Color.GREEN);*/
         middle1JPanel.add(middle2JPanel1, BorderLayout.CENTER);
 
         //中部主功能三级左侧JPanel1
         JPanel lift3JPanel1 = new JPanel();
-        lift3JPanel1.setPreferredSize(new Dimension(340, 313));
+        lift3JPanel1.setPreferredSize(new Dimension(360, 313));
         lift3JPanel1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         /**lift3JPanel1.setBackground(Color.GREEN);*/
         middle2JPanel1.add(lift3JPanel1, BorderLayout.NORTH);
 
         //中部主功能三级左侧JPanel2
         JPanel lift3JPanel2 = new JPanel();
-        lift3JPanel2.setPreferredSize(new Dimension(340, 60));
+        lift3JPanel2.setPreferredSize(new Dimension(360, 60));
         lift3JPanel2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 0));
         /**lift3JPanel2.setBackground(Color.DARK_GRAY);*/
         middle2JPanel1.add(lift3JPanel2, BorderLayout.SOUTH);
 
         //中部主功能四级左侧JPanel
-        String lift1Name1 = "    点动速度";
-        String lift1Name2 = "  加减速时间";
-        String lift1Name3 = "原点回归速度";
-        String lift1Name4 = "    爬行速度";
-        String lift1Name5 = "    上层位置";
-        String lift1Name6 = "    移动速度";
-        String lift1Name7 = "    下层位置";
-        String lift1Name8 = "    材料厚度";
-        String lift1Name9 = "    延时2";
+        String lift1Name1 = "    点动速度(m/s)";
+        String lift1Name2 = "   加减速时间(ms)";
+        String lift1Name3 = "原点回归速度(m/s)";
+        String lift1Name4 = "    爬行速度(m/s)";
+        String lift1Name5 = "    移动速度(m/s)";
+        String lift1Name6 = "         上层位置";
+        String lift1Name7 = "         下层位置";
+        String lift1Name8 = "     材料厚度(mm)";
+        String lift1Name9 = "            延时2";
         boolean b1 = true;
         boolean b2 = true;
         boolean b3 = true;
@@ -224,15 +225,15 @@ public class FirstWindow extends JFrame {
         boolean b7 = true;
         boolean b8 = true;
         boolean b9 = false;
-        NewJPanel lift4JPanel1 = new NewJPanel(lift3JPanel1, 340, 30, lift1Name1, 4000, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage);
-        NewJPanel lift4JPanel2 = new NewJPanel(lift3JPanel1, 340, 30, lift1Name2, 4004, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage);
-        NewJPanel lift4JPanel3 = new NewJPanel(lift3JPanel1, 340, 30, lift1Name3, 4010, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage);
-        NewJPanel lift4JPanel4 = new NewJPanel(lift3JPanel1, 340, 30, lift1Name4, 4012, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage);
-        NewJPanel lift4JPanel5 = new NewJPanel(lift3JPanel1, 340, 30, lift1Name5, 4100, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage);
-        NewJPanel lift4JPanel6 = new NewJPanel(lift3JPanel1, 340, 30, lift1Name6, 4102, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage);
-        NewJPanel lift4JPanel7 = new NewJPanel(lift3JPanel1, 340, 30, lift1Name7, 4110, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage);
-        NewJPanel lift4JPanel8 = new NewJPanel(lift3JPanel1, 340, 30, lift1Name8, 4200, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 1);
-        NewJPanel lift4JPanel9 = new NewJPanel(lift3JPanel1, 340, 30, lift1Name9, 90, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage);
+        NewJPanel lift4JPanel1 = new NewJPanel(lift3JPanel1, 360, 30, lift1Name1, 4000, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 10);
+        NewJPanel lift4JPanel2 = new NewJPanel(lift3JPanel1, 360, 30, lift1Name2, 4004, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage);
+        NewJPanel lift4JPanel3 = new NewJPanel(lift3JPanel1, 360, 30, lift1Name3, 4010, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 10);
+        NewJPanel lift4JPanel4 = new NewJPanel(lift3JPanel1, 360, 30, lift1Name4, 4012, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 10);
+        NewJPanel lift4JPanel5 = new NewJPanel(lift3JPanel1, 360, 30, lift1Name5, 4102, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 10);
+        NewJPanel lift4JPanel6 = new NewJPanel(lift3JPanel1, 360, 30, lift1Name6, 4100, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 0);
+        NewJPanel lift4JPanel7 = new NewJPanel(lift3JPanel1, 360, 30, lift1Name7, 4110, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 0);
+        NewJPanel lift4JPanel8 = new NewJPanel(lift3JPanel1, 360, 30, lift1Name8, 4200, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 0);
+        NewJPanel lift4JPanel9 = new NewJPanel(lift3JPanel1, 360, 30, lift1Name9, 90, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage);
         lift4JPanel1.setVisible(b1);
         lift4JPanel2.setVisible(b2);
         lift4JPanel3.setVisible(b3);
@@ -243,29 +244,30 @@ public class FirstWindow extends JFrame {
         lift4JPanel8.setVisible(b8);
         lift4JPanel9.setVisible(b9);
         JButton addressDataSetButton = new JButton("寄存器地址参数设置");
-        JButton alladdressDataSetButton = new JButton("通用");
+        JButton alladdressDataSetButton = new JButton("设置");
         lift3JPanel2.add(addressDataSetButton);
         lift3JPanel2.add(alladdressDataSetButton);
 
         //中部地址参数设置左侧弹窗
         String addressDataWindowName = "地址参数设置";
-        int addressDataWindowWidth = 280;
+        int addressDataWindowWidth = 340;
         int addressDataWindowHeight = 410;
         NewWindow addressDataWindow = new NewWindow(addressDataWindowName, addressDataWindowWidth, addressDataWindowHeight);
         JPanel addressDataJPanel = new JPanel();
         addressDataJPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         addressDataWindow.add(addressDataJPanel);
-        NewJPanel addressDataJPanel1 = new NewJPanel(addressDataJPanel, 250, 30, lift1Name1 + ":D", lift4JPanel1, dataMessage);
-        NewJPanel addressDataJPanel2 = new NewJPanel(addressDataJPanel, 250, 30, lift1Name2 + ":D", lift4JPanel2, dataMessage);
-        NewJPanel addressDataJPanel3 = new NewJPanel(addressDataJPanel, 250, 30, lift1Name3 + ":D", lift4JPanel3, dataMessage);
-        NewJPanel addressDataJPanel4 = new NewJPanel(addressDataJPanel, 250, 30, lift1Name4 + ":D", lift4JPanel4, dataMessage);
-        NewJPanel addressDataJPanel5 = new NewJPanel(addressDataJPanel, 250, 30, lift1Name5 + ":D", lift4JPanel5, dataMessage);
-        NewJPanel addressDataJPanel6 = new NewJPanel(addressDataJPanel, 250, 30, lift1Name6 + ":D", lift4JPanel6, dataMessage);
-        NewJPanel addressDataJPanel7 = new NewJPanel(addressDataJPanel, 250, 30, lift1Name7 + ":D", lift4JPanel7, dataMessage);
-        NewJPanel addressDataJPanel8 = new NewJPanel(addressDataJPanel, 250, 30, lift1Name8 + ":D", lift4JPanel8, dataMessage);
-        NewJPanel addressDataJPanel81 = new NewJPanel(addressDataJPanel, 250, 30, "步进细分", lift4JPanel8, dataMessage, "步进细分", 1);
-        NewJPanel addressDataJPanel82 = new NewJPanel(addressDataJPanel, 250, 30, "物理速比", lift4JPanel8, dataMessage, "物理速比", 2);
-        NewJPanel addressDataJPanel9 = new NewJPanel(addressDataJPanel, 250, 30, lift1Name9 + ":D", lift4JPanel9, dataMessage);
+        NewJPanel[] newJPanels = {lift4JPanel1, lift4JPanel3, lift4JPanel4, lift4JPanel5, lift4JPanel6, lift4JPanel7, lift4JPanel8};
+        NewJPanel addressDataJPanel1 = new NewJPanel(addressDataJPanel, 300, 30, lift1Name1 + ":D", lift4JPanel1, dataMessage);
+        NewJPanel addressDataJPanel2 = new NewJPanel(addressDataJPanel, 300, 30, lift1Name2 + ":D", lift4JPanel2, dataMessage);
+        NewJPanel addressDataJPanel3 = new NewJPanel(addressDataJPanel, 300, 30, lift1Name3 + ":D", lift4JPanel3, dataMessage);
+        NewJPanel addressDataJPanel4 = new NewJPanel(addressDataJPanel, 300, 30, lift1Name4 + ":D", lift4JPanel4, dataMessage);
+        NewJPanel addressDataJPanel5 = new NewJPanel(addressDataJPanel, 300, 30, lift1Name5 + ":D", lift4JPanel5, dataMessage);
+        NewJPanel addressDataJPanel6 = new NewJPanel(addressDataJPanel, 300, 30, lift1Name6 + ":D", lift4JPanel6, dataMessage);
+        NewJPanel addressDataJPanel7 = new NewJPanel(addressDataJPanel, 300, 30, lift1Name7 + ":D", lift4JPanel7, dataMessage);
+        NewJPanel addressDataJPanel8 = new NewJPanel(addressDataJPanel, 300, 30, lift1Name8 + ":D", lift4JPanel8, dataMessage);
+        NewJPanel addressDataJPanel81 = new NewJPanel(addressDataJPanel, 300, 30, "步进细分", newJPanels, dataMessage, "步进细分", 1);
+        NewJPanel addressDataJPanel82 = new NewJPanel(addressDataJPanel, 300, 30, "物理速比", newJPanels, dataMessage, "物理速比", 2);
+        NewJPanel addressDataJPanel9 = new NewJPanel(addressDataJPanel, 300, 30, lift1Name9 + ":D", lift4JPanel9, dataMessage);
         addressDataJPanel1.setVisible(b1);
         addressDataJPanel2.setVisible(b2);
         addressDataJPanel3.setVisible(b3);
@@ -278,18 +280,8 @@ public class FirstWindow extends JFrame {
         addressDataJPanel82.setVisible(b8);
         addressDataJPanel9.setVisible(b9);
 
-
         //中部地址参数设置弹窗左侧按钮实现
         buttonAddAction(addressDataSetButton, addressDataWindow);
-
-        //中部通用设置弹窗
-        String alladdressDataWindowName = "通用参数设置";
-        int alladdressDataWindowWidth = 600;
-        int alladdressDataWindowHeight = 200;
-        NewWindow alladdressDataWindow = new NewWindow(alladdressDataWindowName, alladdressDataWindowWidth, alladdressDataWindowHeight);
-
-        //中部通用设置弹窗按钮实现
-        buttonAddAction(alladdressDataSetButton, alladdressDataWindow);
 
         //中部主功能二级中间JPanel2----------------------------------------------------------------------------------------
         JPanel middle2JPanel2 = new JPanel();
@@ -369,6 +361,64 @@ public class FirstWindow extends JFrame {
         NewJPanel middle4JPanel31 = new NewJPanel(middle3JPanel3, 155, 30, middle4Name31, 0, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage,"没卵用1");
         NewJPanel middle4JPanel32 = new NewJPanel(middle3JPanel3, 155, 30, middle4Name32, 0, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage,"没卵用1");*/
 
+        //中部通用设置弹窗
+        String alladdressDataWindowName = "权限";
+        int alladdressDataWindowWidth = 400;
+        int alladdressDataWindowHeight = 100;
+        NewWindow alladdressDataWindow = new NewWindow(alladdressDataWindowName, alladdressDataWindowWidth, alladdressDataWindowHeight);
+        JPanel jPanelPassward = new JPanel();
+        jPanelPassward.setPreferredSize(new Dimension(500, 50));
+        jPanelPassward.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 12));
+        JLabel jLabelPassward = new JLabel("请输入密码：");
+        JPasswordField jPasswordFieldPassward = new JPasswordField(8);
+        JButton jButtonPassward = new JButton("登入");
+        jPanelPassward.add(jLabelPassward);
+        jPanelPassward.add(jPasswordFieldPassward);
+        jPanelPassward.add(jButtonPassward);
+        alladdressDataWindow.add(jPanelPassward);
+        NewJPanel[] newJPanelss = {lift4JPanel1, lift4JPanel2, lift4JPanel3, lift4JPanel4, lift4JPanel5};
+        for (int i = 0; i < newJPanelss.length; i++) {
+            newJPanelss[i].getJButton().setEnabled(false);
+        }
+        addressDataSetButton.setEnabled(false);
+        comDataSetButton.setEnabled(false);
+        coiladdressDataSetButton.setEnabled(false);
+
+        alladdressDataSetButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (alladdressDataSetButton.getText().equals("设置")) {
+                    alladdressDataWindow.setVisible(true);
+                } else {
+                    for (int i = 0; i < newJPanelss.length; i++) {
+                        newJPanelss[i].getJButton().setEnabled(false);
+                    }
+                    addressDataSetButton.setEnabled(false);
+                    comDataSetButton.setEnabled(false);
+                    coiladdressDataSetButton.setEnabled(false);
+                    alladdressDataSetButton.setText("设置");
+                }
+            }
+        });
+
+        jButtonPassward.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (Integer.parseInt(jPasswordFieldPassward.getText()) == 123456) {
+                    alladdressDataWindow.setVisible(false);
+                    alladdressDataSetButton.setText("退出");
+                    jPasswordFieldPassward.setText("");
+                    for (int i = 0; i < newJPanelss.length; i++) {
+                        newJPanelss[i].getJButton().setEnabled(true);
+                    }
+                    addressDataSetButton.setEnabled(true);
+                    comDataSetButton.setEnabled(true);
+                    coiladdressDataSetButton.setEnabled(true);
+                } else {
+                    dataMessage.setText("密码错误");
+                    jPasswordFieldPassward.setText("");
+                }
+            }
+        });
+
 
         //中部地址参数设置中间弹窗
         String coiladdressDataWindowName = "线圈地址参数设置";
@@ -422,7 +472,7 @@ public class FirstWindow extends JFrame {
             public void run() {
                 while (true) {
                     try {
-                        Thread.sleep(1);
+                        Thread.sleep(10);
                     } catch (Exception e) {
                     }
                     try {
@@ -453,14 +503,14 @@ public class FirstWindow extends JFrame {
                             int[] i7 = modbus.ModbusreadHoldingRegisters(Integer.valueOf(comAddressJTextField.getText()), lift4JPanel7.getAddress(), 2);
                             int[] i8 = modbus.ModbusreadHoldingRegisters(Integer.valueOf(comAddressJTextField.getText()), lift4JPanel8.getAddress(), 2);
                             int[] i9 = modbus.ModbusreadHoldingRegisters(Integer.valueOf(comAddressJTextField.getText()), lift4JPanel9.getAddress(), 2);
-                            lift4JPanel1.setNowData().setText("当前值：" + dataTreat.readtenToBinary(i1));
+                            lift4JPanel1.setNowData().setText("当前值：" + dataTreat.readtenToBinarytoMM(i1, lift4JPanel1));
                             lift4JPanel2.setNowData().setText("当前值：" + dataTreat.readtenToBinary(i2));
-                            lift4JPanel3.setNowData().setText("当前值：" + dataTreat.readtenToBinary(i3));
-                            lift4JPanel4.setNowData().setText("当前值：" + dataTreat.readtenToBinary(i4));
-                            lift4JPanel5.setNowData().setText("当前值：" + dataTreat.readtenToBinary(i5));
-                            lift4JPanel6.setNowData().setText("当前值：" + dataTreat.readtenToBinary(i6));
-                            lift4JPanel7.setNowData().setText("当前值：" + dataTreat.readtenToBinary(i7));
-                            lift4JPanel8.setNowData().setText("当前值：" + dataTreat.readtenToBinary(i8));
+                            lift4JPanel3.setNowData().setText("当前值：" + dataTreat.readtenToBinarytoMM(i3, lift4JPanel3));
+                            lift4JPanel4.setNowData().setText("当前值：" + dataTreat.readtenToBinarytoMM(i4, lift4JPanel4));
+                            lift4JPanel5.setNowData().setText("当前值：" + dataTreat.readtenToBinarytoMM(i5, lift4JPanel5));
+                            lift4JPanel6.setNowData().setText("当前值：" + dataTreat.readtenToBinarytoMM(i6, lift4JPanel6));
+                            lift4JPanel7.setNowData().setText("当前值：" + dataTreat.readtenToBinarytoMM(i7, lift4JPanel7));
+                            lift4JPanel8.setNowData().setText("当前值：" + dataTreat.readtenToBinarytoMM(i8, lift4JPanel8));
                             lift4JPanel9.setNowData().setText("当前值：" + dataTreat.readtenToBinary(i9));
 
                             boolean[] b1 = modbus.ModbusreadCoils(Integer.valueOf(comAddressJTextField.getText()), middle4JPanel1.getAddress(), 1);

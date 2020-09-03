@@ -26,7 +26,7 @@ public class NewJPanel extends JPanel {
         JLabel jLabel = new JLabel(jLabelName);
         jLabel.setFont(new Font("宋体", Font.PLAIN, 12));
         JTextField jTextField = new JTextField(6);
-        JButton jButton = new JButton("设置");
+        jButton = new JButton("应用");
         jLabel1 = new JLabel("当前值:                         ");
         jLabel1.setFont(new Font("宋体", Font.PLAIN, 12));
         add(jLabel);
@@ -67,14 +67,14 @@ public class NewJPanel extends JPanel {
         });
     }
 
-    public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, int addressData, Modbus modbus, int slaveId, JLabel jLabel2, int dataMM) {   //左侧四级JPanel
+    public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, int addressData, Modbus modbus, int slaveId, JLabel jLabel2, int maxdataMM) {   //左侧四级JPanel
         setPreferredSize(new Dimension(width, height));
         setLayout(new FlowLayout(FlowLayout.LEFT, 5, 2));
         /**setBackground(Color.LIGHT_GRAY);*/
         JLabel jLabel = new JLabel(jLabelName);
         jLabel.setFont(new Font("宋体", Font.PLAIN, 12));
         JTextField jTextField = new JTextField(6);
-        JButton jButton = new JButton("设置");
+        jButton = new JButton("应用");
         jLabel1 = new JLabel("当前值:                         ");
         jLabel1.setFont(new Font("宋体", Font.PLAIN, 12));
         add(jLabel);
@@ -88,21 +88,47 @@ public class NewJPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 if (modbus.ModbusisConnected()) {
                     try {
-                        float f = Float.parseFloat(jTextField.getText());
-                        int a = (int) ((f / 0.5 * wulisubi * bujinxifen) / 10);
-                        if (a < 32768) {
-                            modbus.ModbuswriteSingleRegister(slaveId, i, a);
-                            modbus.ModbuswriteSingleRegister(slaveId, i + 1, 0);
-                            jLabel2.setText(jLabelName + "---设置成功");
+                        if (maxdataMM == 10) {
+                            if ((Float.parseFloat(jTextField.getText())) < 11) {
+                                float f = Float.parseFloat(jTextField.getText());
+                                float f1 = (float) ((f / 0.5 * wulisubi * bujinxifen) / 10);
+                                int a = (int) f1;
+                                if (a < 32768) {
+                                    modbus.ModbuswriteSingleRegister(slaveId, i, a);
+                                    modbus.ModbuswriteSingleRegister(slaveId, i + 1, 0);
+                                    jLabel2.setText(jLabelName + "---设置成功");
+                                } else {
+                                    if (a < 65536) {
+                                        modbus.ModbuswriteSingleRegister(slaveId, i, a);
+                                        modbus.ModbuswriteSingleRegister(slaveId, i + 1, 0);
+                                        jLabel2.setText(jLabelName + "---设置成功");
+                                    } else {
+                                        modbus.ModbuswriteSingleRegister(slaveId, i, dataTreat.tenToBinary(a)[0]);
+                                        modbus.ModbuswriteSingleRegister(slaveId, i + 1, dataTreat.tenToBinary(a)[1]);
+                                        jLabel2.setText(jLabelName + "---设置成功");
+                                    }
+                                }
+                            } else {
+                                jLabel2.setText(jLabelName + "---超出最大值");
+                            }
                         } else {
-                            if (a < 65536) {
+                            float f = Float.parseFloat(jTextField.getText());
+                            float f1 = (float) ((f / 0.5 * wulisubi * bujinxifen) / 10);
+                            int a = (int) f1;
+                            if (a < 32768) {
                                 modbus.ModbuswriteSingleRegister(slaveId, i, a);
                                 modbus.ModbuswriteSingleRegister(slaveId, i + 1, 0);
                                 jLabel2.setText(jLabelName + "---设置成功");
                             } else {
-                                modbus.ModbuswriteSingleRegister(slaveId, i, dataTreat.tenToBinary(a)[0]);
-                                modbus.ModbuswriteSingleRegister(slaveId, i + 1, dataTreat.tenToBinary(a)[1]);
-                                jLabel2.setText(jLabelName + "---设置成功");
+                                if (a < 65536) {
+                                    modbus.ModbuswriteSingleRegister(slaveId, i, a);
+                                    modbus.ModbuswriteSingleRegister(slaveId, i + 1, 0);
+                                    jLabel2.setText(jLabelName + "---设置成功");
+                                } else {
+                                    modbus.ModbuswriteSingleRegister(slaveId, i, dataTreat.tenToBinary(a)[0]);
+                                    modbus.ModbuswriteSingleRegister(slaveId, i + 1, dataTreat.tenToBinary(a)[1]);
+                                    jLabel2.setText(jLabelName + "---设置成功");
+                                }
                             }
                         }
                     } catch (Exception e1) {
@@ -116,14 +142,14 @@ public class NewJPanel extends JPanel {
         });
     }
 
-    public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, NewJPanel newJPanel, JLabel jLabel2, String xifensubi, int bw) {   //左侧地址参数设置JPanel 步进细分
+    public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, NewJPanel[] newJPanel, JLabel jLabel2, String xifensubi, int bw) {   //左侧地址参数设置JPanel 步进细分
         setPreferredSize(new Dimension(width, height));
         setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 2));
         /**setBackground(Color.LIGHT_GRAY);*/
         JLabel jLabel = new JLabel(jLabelName);
         jLabel.setFont(new Font("宋体", Font.PLAIN, 12));
         jTextField = new JTextField(6);
-        JButton jButton = new JButton("设置");
+        jButton = new JButton("应用");
         add(jLabel);
         add(jTextField);
         add(jButton);
@@ -131,18 +157,26 @@ public class NewJPanel extends JPanel {
 
         if (bw == 1) {
             jTextField.setText("6400"); //初始步进细分
-            newJPanel.setbujinxifen(Integer.valueOf(jTextField.getText()));
+            for (int j = 0; j < newJPanel.length; j++) {
+                newJPanel[j].setbujinxifen(Integer.valueOf(jTextField.getText()));
+            }
             jButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    newJPanel.setbujinxifen(Integer.valueOf(jTextField.getText()));
+                    for (int j = 0; j < newJPanel.length; j++) {
+                        newJPanel[j].setbujinxifen(Integer.valueOf(jTextField.getText()));
+                    }
                 }
             });
         } else if (bw == 2) {
             jTextField.setText("12");  //初始物理速比
-            newJPanel.setwulisubi(Integer.valueOf(jTextField.getText()));
+            for (int j = 0; j < newJPanel.length; j++) {
+                newJPanel[j].setwulisubi(Integer.valueOf(jTextField.getText()));
+            }
             jButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    newJPanel.setwulisubi(Integer.valueOf(jTextField.getText()));
+                    for (int j = 0; j < newJPanel.length; j++) {
+                        newJPanel[j].setwulisubi(Integer.valueOf(jTextField.getText()));
+                    }
                 }
             });
         }
@@ -156,7 +190,7 @@ public class NewJPanel extends JPanel {
         jLabel.setFont(new Font("宋体", Font.PLAIN, 12));
         jTextField = new JTextField(6);
         jTextField.setText(String.valueOf(newJPanel.getAddress()));
-        JButton jButton = new JButton("设置");
+        jButton = new JButton("应用");
         add(jLabel);
         add(jTextField);
         add(jButton);
@@ -254,7 +288,7 @@ public class NewJPanel extends JPanel {
             jComboBox.setSelectedIndex(1);
             jTextField.setText(String.valueOf(newJPanel.getAddress() - 18432));
         }
-        JButton jButton1 = new JButton("设置");
+        JButton jButton1 = new JButton("应用");
         JComboBox choosejComboBox = new JComboBox();
         choosejComboBox.addItem("点动");
         choosejComboBox.addItem("切换");
@@ -303,7 +337,7 @@ public class NewJPanel extends JPanel {
         JLabel jLabel = new JLabel(jLabelName);
         jLabel.setFont(new Font("宋体", Font.PLAIN, 12));
         JComboBox<String> jComboBox = new JComboBox<String>();
-        JButton jButton = new JButton("设置");
+        JButton jButton = new JButton("应用");
         add(jLabel);
         add(jComboBox);
         add(jButton);
@@ -331,6 +365,14 @@ public class NewJPanel extends JPanel {
 
     public void setwulisubi(int wulisubi) {
         this.wulisubi = wulisubi;
+    }
+
+    public float getbujinxifen() {
+        return bujinxifen;
+    }
+
+    public float getwulisubi() {
+        return wulisubi;
     }
 
     public void changeAddress(int i) {

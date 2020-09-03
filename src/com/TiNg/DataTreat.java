@@ -21,4 +21,17 @@ public class DataTreat {
         int i1 = Integer.valueOf(s2, 2);
         return i1;
     }
+
+    public float readtenToBinarytoMM(int[] i, NewJPanel newJPanel) {
+        String s = Integer.toBinaryString(i[0]);
+        while (s.length() < 16) {
+            s = "0" + s;
+        }
+        String s1 = Integer.toBinaryString(i[1]);
+        String s2 = s1 + s;
+        int i2 = Integer.valueOf(s2, 2);
+        float i4 = (float) i2;
+        float i3 = (i4 * 5 / newJPanel.getwulisubi() / newJPanel.getbujinxifen());
+        return i3;
+    }
 }
