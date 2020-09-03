@@ -217,16 +217,25 @@ public class NewJPanel extends JPanel {
         jPanel.add(this);
         this.mory = mory;
         i = addressData;
+
         if (mory.equals("M")) {
             if (i < 8000) {
                 this.i = i;
             } else {
                 this.i = i + 16576;
             }
-        } else if (addressData < 8) {
-            i = addressData + 18432;
+        } else if (mory.equals("Y")) {
+            if (addressData < 8) {
+                i = addressData + 18432;
+            } else {
+                i = addressData + 18430;
+            }
         } else {
-            i = addressData + 18430;
+            if (addressData < 8) {
+                i = addressData + 16384;
+            } else {
+                i = addressData + 16382;
+            }
         }
 
         this.choose = choose;
@@ -282,12 +291,16 @@ public class NewJPanel extends JPanel {
         jLabel.setFont(new Font("宋体", Font.PLAIN, 12));
         jComboBox.addItem("M");
         jComboBox.addItem("Y");
+        jComboBox.addItem("X");
         jTextField = new JTextField(6);
         if (newJPanel.getMory().equals("M")) {
             jComboBox.setSelectedIndex(0);
             jTextField.setText(String.valueOf(newJPanel.getAddress()));
-        } else {
+        } else if (newJPanel.getMory().equals("X")) {
             jComboBox.setSelectedIndex(1);
+            jTextField.setText(String.valueOf(newJPanel.getAddress() - 16384));
+        } else {
+            jComboBox.setSelectedIndex(2);
             jTextField.setText(String.valueOf(newJPanel.getAddress() - 18432));
         }
         JButton jButton1 = new JButton("应用");
@@ -400,10 +413,18 @@ public class NewJPanel extends JPanel {
             } else {
                 this.i = i + 16576;
             }
-        } else if (i < 8) {
-            this.i = i + 18432;
+        } else if (jComboBox.getSelectedIndex() == 1) {
+            if (i < 8) {
+                i = i + 18432;
+            } else {
+                i = i + 18430;
+            }
         } else {
-            this.i = i + 18430;
+            if (i < 8) {
+                i = i + 16384;
+            } else {
+                i = i + 16382;
+            }
         }
     }
 

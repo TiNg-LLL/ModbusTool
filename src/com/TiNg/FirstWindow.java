@@ -318,9 +318,9 @@ public class FirstWindow extends JFrame {
         String middle4Name4 = "停止";
         String middle4Name5 = "回原点";
         String middle4Name6 = "功能1";
-        String middle4Name7 = "功能4";
-        String middle4Name8 = "功能5";
-        String middle4Name9 = "功能6";
+        String middle4Name7 = "上限位";
+        String middle4Name8 = "下限位";
+        String middle4Name9 = "原点";
         String middle4Name10 = "功能7";
         boolean b11 = true;
         boolean b22 = true;
@@ -328,9 +328,9 @@ public class FirstWindow extends JFrame {
         boolean b44 = true;
         boolean b55 = true;
         boolean b66 = true;
-        boolean b77 = false;
-        boolean b88 = false;
-        boolean b99 = false;
+        boolean b77 = true;
+        boolean b88 = true;
+        boolean b99 = true;
         boolean b100 = false;
         NewJPanel middle4JPanel1 = new NewJPanel(middle3JPanel1, 165, 30, middle4Name1, 100, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 1, "M");//addressData默认地址  choose：1按下true松开false  2第一次true第二次false 3 M线圈 Y线圈
         NewJPanel middle4JPanel2 = new NewJPanel(middle3JPanel1, 165, 30, middle4Name2, 111, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 1, "M");
@@ -338,9 +338,9 @@ public class FirstWindow extends JFrame {
         NewJPanel middle4JPanel4 = new NewJPanel(middle3JPanel1, 165, 30, middle4Name4, 30, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 1, "M");
         NewJPanel middle4JPanel5 = new NewJPanel(middle3JPanel1, 165, 30, middle4Name5, 10, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 2, "M");
         NewJPanel middle4JPanel6 = new NewJPanel(middle3JPanel1, 165, 30, middle4Name6, 40, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 2, "M");
-        NewJPanel middle4JPanel7 = new NewJPanel(middle3JPanel1, 165, 30, middle4Name7, 6, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 2, "M");
-        NewJPanel middle4JPanel8 = new NewJPanel(middle3JPanel1, 165, 30, middle4Name8, 7, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 2, "M");
-        NewJPanel middle4JPanel9 = new NewJPanel(middle3JPanel1, 165, 30, middle4Name9, 8, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 2, "M");
+        NewJPanel middle4JPanel7 = new NewJPanel(middle3JPanel1, 165, 30, middle4Name7, 1, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 2, "X");
+        NewJPanel middle4JPanel8 = new NewJPanel(middle3JPanel1, 165, 30, middle4Name8, 2, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 2, "X");
+        NewJPanel middle4JPanel9 = new NewJPanel(middle3JPanel1, 165, 30, middle4Name9, 3, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 2, "X");
         NewJPanel middle4JPanel10 = new NewJPanel(middle3JPanel1, 165, 30, middle4Name10, 9, modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, 2, "M");
         middle4JPanel1.setVisible(b11);
         middle4JPanel2.setVisible(b22);
@@ -376,10 +376,12 @@ public class FirstWindow extends JFrame {
         jPanelPassward.add(jPasswordFieldPassward);
         jPanelPassward.add(jButtonPassward);
         alladdressDataWindow.add(jPanelPassward);
-        NewJPanel[] newJPanelss = {lift4JPanel1, lift4JPanel2, lift4JPanel3, lift4JPanel4, lift4JPanel5};
+        NewJPanel[] newJPanelss = {lift4JPanel1, lift4JPanel2, lift4JPanel3, lift4JPanel4, lift4JPanel5, middle4JPanel7, middle4JPanel8, middle4JPanel9};
         for (int i = 0; i < newJPanelss.length; i++) {
             newJPanelss[i].getJButton().setEnabled(false);
-            newJPanelss[i].getJTextField().setEnabled(false);
+            if (!((newJPanelss[i].getJTextField()) == null)) {
+                newJPanelss[i].getJTextField().setEnabled(false);
+            }
         }
         addressDataSetButton.setEnabled(false);
         comDataSetButton.setEnabled(false);
@@ -392,7 +394,9 @@ public class FirstWindow extends JFrame {
                 } else {
                     for (int i = 0; i < newJPanelss.length; i++) {
                         newJPanelss[i].getJButton().setEnabled(false);
-                        newJPanelss[i].getJTextField().setEnabled(false);
+                        if (!((newJPanelss[i].getJTextField()) == null)) {
+                            newJPanelss[i].getJTextField().setEnabled(false);
+                        }
                     }
                     addressDataSetButton.setEnabled(false);
                     comDataSetButton.setEnabled(false);
@@ -410,7 +414,9 @@ public class FirstWindow extends JFrame {
                     jPasswordFieldPassward.setText("");
                     for (int i = 0; i < newJPanelss.length; i++) {
                         newJPanelss[i].getJButton().setEnabled(true);
-                        newJPanelss[i].getJTextField().setEnabled(true);
+                        if (!((newJPanelss[i].getJTextField()) == null)) {
+                            newJPanelss[i].getJTextField().setEnabled(true);
+                        }
                     }
                     addressDataSetButton.setEnabled(true);
                     comDataSetButton.setEnabled(true);
