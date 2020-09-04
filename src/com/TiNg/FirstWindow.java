@@ -98,7 +98,7 @@ public class FirstWindow extends JFrame {
         String comDataWindowName = "COM参数设置";
         int comDataWindowWidth = 700;
         int comDataWindowHeight = 135;
-        NewWindow comDataWindow = new NewWindow(comDataWindowName, comDataWindowWidth, comDataWindowHeight);
+        NewWindow comDataWindow = new NewWindow(comDataWindowName, comDataWindowWidth, comDataWindowHeight,"res\\gear-icon.png");
 
         //顶部COM参数设置弹窗内内容
         JPanel comDateWindowJPanel1 = new JPanel();
@@ -269,7 +269,7 @@ public class FirstWindow extends JFrame {
         String addressDataWindowName = "地址参数设置";
         int addressDataWindowWidth = 340;
         int addressDataWindowHeight = 410;
-        NewWindow addressDataWindow = new NewWindow(addressDataWindowName, addressDataWindowWidth, addressDataWindowHeight);
+        NewWindow addressDataWindow = new NewWindow(addressDataWindowName, addressDataWindowWidth, addressDataWindowHeight,"res\\gear-icon.png");
         JPanel addressDataJPanel = new JPanel();
         addressDataJPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         addressDataWindow.add(addressDataJPanel);
@@ -302,21 +302,21 @@ public class FirstWindow extends JFrame {
 
         //中部主功能二级中间JPanel2----------------------------------------------------------------------------------------
         JPanel middle2JPanel2 = new JPanel();
-        middle2JPanel2.setPreferredSize(new Dimension(340, 360));
+        middle2JPanel2.setPreferredSize(new Dimension(360, 360));
         middle2JPanel2.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
         /**middle2JPanel2.setBackground(Color.BLUE);*/
         middle1JPanel.add(middle2JPanel2, BorderLayout.CENTER);
 
         //中部主功能三级中间JPanel1
         JPanel middle3JPanel1 = new JPanel();
-        middle3JPanel1.setPreferredSize(new Dimension(340, 190));
+        middle3JPanel1.setPreferredSize(new Dimension(360, 190));
         middle3JPanel1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         /**middle3JPanel1.setBackground(Color.DARK_GRAY);*/
         middle2JPanel2.add(middle3JPanel1, BorderLayout.NORTH);
 
         //中部主功能三级中间JPanel3
         JPanel middle3JPanel3 = new JPanel();
-        middle3JPanel3.setPreferredSize(new Dimension(340, 118));
+        middle3JPanel3.setPreferredSize(new Dimension(360, 118));
         middle3JPanel3.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         /**middle3JPanel3.setBackground(Color.BLUE);*/
         middle2JPanel2.add(middle3JPanel3, BorderLayout.CENTER);
@@ -329,16 +329,16 @@ public class FirstWindow extends JFrame {
         middle2JPanel2.add(middle3JPanel2, BorderLayout.SOUTH);
 
         //中部主功能四级中间JPanel1
-        String middle4Name1 = "上升";
-        String middle4Name2 = "下降";
-        String middle4Name3 = "启动";
-        String middle4Name4 = "停止";
+        String middle4Name1 = "  上升  ";
+        String middle4Name2 = "  下降  ";
+        String middle4Name3 = "  启动  ";
+        String middle4Name4 = "  停止  ";
         String middle4Name5 = "回原点";
-        String middle4Name6 = "功能1";
+        String middle4Name6 = " 功能1 ";
         String middle4Name7 = "上限位";
         String middle4Name8 = "下限位";
-        String middle4Name9 = "原点";
-        String middle4Name10 = "功能7";
+        String middle4Name9 = "  原点  ";
+        String middle4Name10 = " 功能2 ";
         boolean b11 = true;
         boolean b22 = true;
         boolean b33 = true;
@@ -348,7 +348,7 @@ public class FirstWindow extends JFrame {
         boolean b77 = true;
         boolean b88 = true;
         boolean b99 = true;
-        boolean b100 = false;
+        boolean b100 = true;
         NewJPanel middle4JPanel1 = new NewJPanel(middle3JPanel1, 165, 30, middle4Name1, Integer.valueOf(properties.getProperty("MXYaddress1")), modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, Integer.valueOf(properties.getProperty("MXYchoose1")), properties.getProperty("MXY1"));//addressData默认地址  choose：1按下true松开false  2第一次true第二次false 3 M线圈 Y线圈
         NewJPanel middle4JPanel2 = new NewJPanel(middle3JPanel1, 165, 30, middle4Name2, Integer.valueOf(properties.getProperty("MXYaddress2")), modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, Integer.valueOf(properties.getProperty("MXYchoose2")), properties.getProperty("MXY2"));
         NewJPanel middle4JPanel3 = new NewJPanel(middle3JPanel1, 165, 30, middle4Name3, Integer.valueOf(properties.getProperty("MXYaddress3")), modbus, Integer.valueOf(comAddressJTextField.getText()), dataMessage, Integer.valueOf(properties.getProperty("MXYchoose3")), properties.getProperty("MXY3"));
@@ -382,7 +382,7 @@ public class FirstWindow extends JFrame {
         String alladdressDataWindowName = "权限";
         int alladdressDataWindowWidth = 400;
         int alladdressDataWindowHeight = 100;
-        NewWindow alladdressDataWindow = new NewWindow(alladdressDataWindowName, alladdressDataWindowWidth, alladdressDataWindowHeight);
+        NewWindow alladdressDataWindow = new NewWindow(alladdressDataWindowName, alladdressDataWindowWidth, alladdressDataWindowHeight,"res\\key-icon.png");
         JPanel jPanelPassward = new JPanel();
         jPanelPassward.setPreferredSize(new Dimension(500, 50));
         jPanelPassward.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 12));
@@ -393,7 +393,7 @@ public class FirstWindow extends JFrame {
         jPanelPassward.add(jPasswordFieldPassward);
         jPanelPassward.add(jButtonPassward);
         alladdressDataWindow.add(jPanelPassward);
-        NewJPanel[] newJPanelss = {lift4JPanel1, lift4JPanel2, lift4JPanel3, lift4JPanel4, lift4JPanel5, middle4JPanel7, middle4JPanel8, middle4JPanel9};
+        NewJPanel[] newJPanelss = {lift4JPanel1, lift4JPanel2, lift4JPanel3, lift4JPanel4, lift4JPanel5, middle4JPanel7, middle4JPanel8, middle4JPanel9,middle4JPanel10};
         for (int i = 0; i < newJPanelss.length; i++) {
             newJPanelss[i].getJButton().setEnabled(false);
             if (!((newJPanelss[i].getJTextField()) == null)) {
@@ -451,7 +451,7 @@ public class FirstWindow extends JFrame {
         String coiladdressDataWindowName = "线圈地址参数设置";
         int coiladdressDataWindowWidth = 320;
         int coiladdressDataWindowHeight = 400;
-        NewWindow coiladdressDataWindow = new NewWindow(coiladdressDataWindowName, coiladdressDataWindowWidth, coiladdressDataWindowHeight);
+        NewWindow coiladdressDataWindow = new NewWindow(coiladdressDataWindowName, coiladdressDataWindowWidth, coiladdressDataWindowHeight,"res\\gear-icon.png");
         JPanel coiladdressDataJPanel = new JPanel();
         coiladdressDataJPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         coiladdressDataWindow.add(coiladdressDataJPanel);
