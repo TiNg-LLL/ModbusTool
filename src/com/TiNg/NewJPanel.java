@@ -146,7 +146,7 @@ public class NewJPanel extends JPanel {
 
     public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, NewJPanel[] newJPanel, JLabel jLabel2, String xifensubi, int bw) {   //左侧地址参数设置JPanel 步进细分
         setPreferredSize(new Dimension(width, height));
-        setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 2));
+        setLayout(new FlowLayout(FlowLayout.CENTER, 10, 2));
         /**setBackground(Color.LIGHT_GRAY);*/
         JLabel jLabel = new JLabel(jLabelName);
         jLabel.setFont(new Font("宋体", Font.PLAIN, 12));
@@ -186,7 +186,7 @@ public class NewJPanel extends JPanel {
 
     public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, NewJPanel newJPanel, JLabel jLabel2) {   //左侧地址参数设置JPanel
         setPreferredSize(new Dimension(width, height));
-        setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 2));
+        setLayout(new FlowLayout(FlowLayout.LEFT, 10, 2));
         /**setBackground(Color.LIGHT_GRAY);*/
         JLabel jLabel = new JLabel(jLabelName);
         jLabel.setFont(new Font("宋体", Font.PLAIN, 12));
@@ -285,7 +285,7 @@ public class NewJPanel extends JPanel {
 
     public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, NewJPanel newJPanel, JLabel jLabel2, String meiluanyong) {      //中部线圈地址参数设置JPanel
         setPreferredSize(new Dimension(width, height));
-        setLayout(new FlowLayout(FlowLayout.LEFT, 5, 2));
+        setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 2));
         /**setBackground(Color.LIGHT_GRAY);*/
         JLabel jLabel = new JLabel(jLabelName);
         jLabel.setFont(new Font("宋体", Font.PLAIN, 12));

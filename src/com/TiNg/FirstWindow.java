@@ -267,13 +267,13 @@ public class FirstWindow extends JFrame {
 
         //中部地址参数设置左侧弹窗
         String addressDataWindowName = "地址参数设置";
-        int addressDataWindowWidth = 340;
+        int addressDataWindowWidth = 320;
         int addressDataWindowHeight = 410;
         NewWindow addressDataWindow = new NewWindow(addressDataWindowName, addressDataWindowWidth, addressDataWindowHeight,"res\\gear-icon.png");
         JPanel addressDataJPanel = new JPanel();
-        addressDataJPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+        addressDataJPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
         addressDataWindow.add(addressDataJPanel);
-        NewJPanel[] newJPanels = {lift4JPanel1, lift4JPanel3, lift4JPanel4, lift4JPanel5, lift4JPanel6, lift4JPanel7, lift4JPanel8};
+        NewJPanel[] newJPanels = {lift4JPanel1, lift4JPanel3, lift4JPanel4, lift4JPanel5, lift4JPanel6, lift4JPanel7, lift4JPanel8}; //需要步进细分 物理速比的数组；
         NewJPanel addressDataJPanel1 = new NewJPanel(addressDataJPanel, 300, 30, lift1Name1 + ":D", lift4JPanel1, dataMessage);
         NewJPanel addressDataJPanel2 = new NewJPanel(addressDataJPanel, 300, 30, lift1Name2 + ":D", lift4JPanel2, dataMessage);
         NewJPanel addressDataJPanel3 = new NewJPanel(addressDataJPanel, 300, 30, lift1Name3 + ":D", lift4JPanel3, dataMessage);
@@ -282,8 +282,8 @@ public class FirstWindow extends JFrame {
         NewJPanel addressDataJPanel6 = new NewJPanel(addressDataJPanel, 300, 30, lift1Name6 + ":D", lift4JPanel6, dataMessage);
         NewJPanel addressDataJPanel7 = new NewJPanel(addressDataJPanel, 300, 30, lift1Name7 + ":D", lift4JPanel7, dataMessage);
         NewJPanel addressDataJPanel8 = new NewJPanel(addressDataJPanel, 300, 30, lift1Name8 + ":D", lift4JPanel8, dataMessage);
-        NewJPanel addressDataJPanel81 = new NewJPanel(addressDataJPanel, 300, 30, "步进细分", newJPanels, dataMessage, properties.getProperty("bujinxifen"), 1);
-        NewJPanel addressDataJPanel82 = new NewJPanel(addressDataJPanel, 300, 30, "物理速比", newJPanels, dataMessage, properties.getProperty("wulisubi"), 2);
+        NewJPanel addressDataJPanel81 = new NewJPanel(addressDataJPanel, 350, 30, "步进细分", newJPanels, dataMessage, properties.getProperty("bujinxifen"), 1);
+        NewJPanel addressDataJPanel82 = new NewJPanel(addressDataJPanel, 350, 30, "物理速比", newJPanels, dataMessage, properties.getProperty("wulisubi"), 2);
         NewJPanel addressDataJPanel9 = new NewJPanel(addressDataJPanel, 300, 30, lift1Name9 + ":D", lift4JPanel9, dataMessage);
         addressDataJPanel1.setVisible(b1);
         addressDataJPanel2.setVisible(b2);
@@ -449,22 +449,22 @@ public class FirstWindow extends JFrame {
 
         //中部地址参数设置中间弹窗
         String coiladdressDataWindowName = "线圈地址参数设置";
-        int coiladdressDataWindowWidth = 320;
+        int coiladdressDataWindowWidth = 370;
         int coiladdressDataWindowHeight = 400;
         NewWindow coiladdressDataWindow = new NewWindow(coiladdressDataWindowName, coiladdressDataWindowWidth, coiladdressDataWindowHeight,"res\\gear-icon.png");
         JPanel coiladdressDataJPanel = new JPanel();
         coiladdressDataJPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         coiladdressDataWindow.add(coiladdressDataJPanel);
-        NewJPanel coiladdressDataJPanel1 = new NewJPanel(coiladdressDataJPanel, 290, 30, middle4Name1, middle4JPanel1, dataMessage, "没卵用");
-        NewJPanel coiladdressDataJPanel2 = new NewJPanel(coiladdressDataJPanel, 290, 30, middle4Name2, middle4JPanel2, dataMessage, "没卵用");
-        NewJPanel coiladdressDataJPanel3 = new NewJPanel(coiladdressDataJPanel, 290, 30, middle4Name3, middle4JPanel3, dataMessage, "没卵用");
-        NewJPanel coiladdressDataJPanel4 = new NewJPanel(coiladdressDataJPanel, 290, 30, middle4Name4, middle4JPanel4, dataMessage, "没卵用");
-        NewJPanel coiladdressDataJPanel5 = new NewJPanel(coiladdressDataJPanel, 290, 30, middle4Name5, middle4JPanel5, dataMessage, "没卵用");
-        NewJPanel coiladdressDataJPanel6 = new NewJPanel(coiladdressDataJPanel, 290, 30, middle4Name6, middle4JPanel6, dataMessage, "没卵用");
-        NewJPanel coiladdressDataJPanel7 = new NewJPanel(coiladdressDataJPanel, 290, 30, middle4Name7, middle4JPanel7, dataMessage, "没卵用");
-        NewJPanel coiladdressDataJPanel8 = new NewJPanel(coiladdressDataJPanel, 290, 30, middle4Name8, middle4JPanel8, dataMessage, "没卵用");
-        NewJPanel coiladdressDataJPanel9 = new NewJPanel(coiladdressDataJPanel, 290, 30, middle4Name9, middle4JPanel9, dataMessage, "没卵用");
-        NewJPanel coiladdressDataJPanel10 = new NewJPanel(coiladdressDataJPanel, 290, 30, middle4Name10, middle4JPanel10, dataMessage, "没卵用");
+        NewJPanel coiladdressDataJPanel1 = new NewJPanel(coiladdressDataJPanel, 300, 30, middle4Name1, middle4JPanel1, dataMessage, "没卵用");
+        NewJPanel coiladdressDataJPanel2 = new NewJPanel(coiladdressDataJPanel, 300, 30, middle4Name2, middle4JPanel2, dataMessage, "没卵用");
+        NewJPanel coiladdressDataJPanel3 = new NewJPanel(coiladdressDataJPanel, 300, 30, middle4Name3, middle4JPanel3, dataMessage, "没卵用");
+        NewJPanel coiladdressDataJPanel4 = new NewJPanel(coiladdressDataJPanel, 300, 30, middle4Name4, middle4JPanel4, dataMessage, "没卵用");
+        NewJPanel coiladdressDataJPanel5 = new NewJPanel(coiladdressDataJPanel, 300, 30, middle4Name5, middle4JPanel5, dataMessage, "没卵用");
+        NewJPanel coiladdressDataJPanel6 = new NewJPanel(coiladdressDataJPanel, 300, 30, middle4Name6, middle4JPanel6, dataMessage, "没卵用");
+        NewJPanel coiladdressDataJPanel7 = new NewJPanel(coiladdressDataJPanel, 300, 30, middle4Name7, middle4JPanel7, dataMessage, "没卵用");
+        NewJPanel coiladdressDataJPanel8 = new NewJPanel(coiladdressDataJPanel, 300, 30, middle4Name8, middle4JPanel8, dataMessage, "没卵用");
+        NewJPanel coiladdressDataJPanel9 = new NewJPanel(coiladdressDataJPanel, 300, 30, middle4Name9, middle4JPanel9, dataMessage, "没卵用");
+        NewJPanel coiladdressDataJPanel10 = new NewJPanel(coiladdressDataJPanel, 300, 30, middle4Name10, middle4JPanel10, dataMessage, "没卵用");
         coiladdressDataJPanel1.setVisible(b11);
         coiladdressDataJPanel2.setVisible(b22);
         coiladdressDataJPanel3.setVisible(b33);
