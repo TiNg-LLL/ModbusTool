@@ -410,24 +410,30 @@ public class NewJPanel extends JPanel {
         if (jComboBox.getSelectedIndex() == 0) {
             if (i < 8000) {
                 this.i = i;
+                jLabel.setText(getJButton().getText() + "设置成功");
             } else {
                 this.i = i + 16576;
+                jLabel.setText(getJButton().getText() + "设置成功");
             }
         } else if (jComboBox.getSelectedIndex() == 1) {
             if (i < 8) {
                 this.i = i + 18432;
+                jLabel.setText(getJButton().getText() + "设置成功");
             } else if (i == 8 || i == 9) {
                 jLabel.setText("Y地址错误");
             } else {
                 this.i = i + 18430;
+                jLabel.setText(getJButton().getText() + "设置成功");
             }
         } else if (jComboBox.getSelectedIndex() == 2) {
             if (i < 8) {
                 this.i = i + 16384;
+                jLabel.setText(getJButton().getText() + "设置成功");
             } else if (i == 8 || i == 9) {
                 jLabel.setText("Y地址错误");
             } else {
                 this.i = i + 16382;
+                jLabel.setText(getJButton().getText() + "设置成功");
             }
         }
     }
