@@ -93,12 +93,17 @@ public class FirstWindow extends JFrame {
                 comListAdd(comList);
             }
         });
+        try {
+            comList.setSelectedIndex(Integer.valueOf(properties.getProperty("defaultCOM")));   //默认端口
+        } catch (Exception e) {
+
+        }
 
         //顶部COM参数设置弹窗
         String comDataWindowName = "COM参数设置";
         int comDataWindowWidth = 700;
         int comDataWindowHeight = 135;
-        NewWindow comDataWindow = new NewWindow(comDataWindowName, comDataWindowWidth, comDataWindowHeight,"res\\gear-icon.png");
+        NewWindow comDataWindow = new NewWindow(comDataWindowName, comDataWindowWidth, comDataWindowHeight, "res\\gear-icon.png");
 
         //顶部COM参数设置弹窗内内容
         JPanel comDateWindowJPanel1 = new JPanel();
@@ -269,7 +274,7 @@ public class FirstWindow extends JFrame {
         String addressDataWindowName = "地址参数设置";
         int addressDataWindowWidth = 320;
         int addressDataWindowHeight = 410;
-        NewWindow addressDataWindow = new NewWindow(addressDataWindowName, addressDataWindowWidth, addressDataWindowHeight,"res\\gear-icon.png");
+        NewWindow addressDataWindow = new NewWindow(addressDataWindowName, addressDataWindowWidth, addressDataWindowHeight, "res\\gear-icon.png");
         JPanel addressDataJPanel = new JPanel();
         addressDataJPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
         addressDataWindow.add(addressDataJPanel);
@@ -382,7 +387,7 @@ public class FirstWindow extends JFrame {
         String alladdressDataWindowName = "权限";
         int alladdressDataWindowWidth = 400;
         int alladdressDataWindowHeight = 100;
-        NewWindow alladdressDataWindow = new NewWindow(alladdressDataWindowName, alladdressDataWindowWidth, alladdressDataWindowHeight,"res\\key-icon.png");
+        NewWindow alladdressDataWindow = new NewWindow(alladdressDataWindowName, alladdressDataWindowWidth, alladdressDataWindowHeight, "res\\key-icon.png");
         JPanel jPanelPassward = new JPanel();
         jPanelPassward.setPreferredSize(new Dimension(500, 50));
         jPanelPassward.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 12));
@@ -393,7 +398,7 @@ public class FirstWindow extends JFrame {
         jPanelPassward.add(jPasswordFieldPassward);
         jPanelPassward.add(jButtonPassward);
         alladdressDataWindow.add(jPanelPassward);
-        NewJPanel[] newJPanelss = {lift4JPanel1, lift4JPanel2, lift4JPanel3, lift4JPanel4, lift4JPanel5, middle4JPanel7, middle4JPanel8, middle4JPanel9,middle4JPanel10};
+        NewJPanel[] newJPanelss = {lift4JPanel1, lift4JPanel2, lift4JPanel3, lift4JPanel4, lift4JPanel5, middle4JPanel7, middle4JPanel8, middle4JPanel9, middle4JPanel10};
         for (int i = 0; i < newJPanelss.length; i++) {
             newJPanelss[i].getJButton().setEnabled(false);
             if (!((newJPanelss[i].getJTextField()) == null)) {
@@ -451,7 +456,7 @@ public class FirstWindow extends JFrame {
         String coiladdressDataWindowName = "线圈地址参数设置";
         int coiladdressDataWindowWidth = 370;
         int coiladdressDataWindowHeight = 400;
-        NewWindow coiladdressDataWindow = new NewWindow(coiladdressDataWindowName, coiladdressDataWindowWidth, coiladdressDataWindowHeight,"res\\gear-icon.png");
+        NewWindow coiladdressDataWindow = new NewWindow(coiladdressDataWindowName, coiladdressDataWindowWidth, coiladdressDataWindowHeight, "res\\gear-icon.png");
         JPanel coiladdressDataJPanel = new JPanel();
         coiladdressDataJPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         coiladdressDataWindow.add(coiladdressDataJPanel);
