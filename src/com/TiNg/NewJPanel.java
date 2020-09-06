@@ -46,24 +46,24 @@ public class NewJPanel extends JPanel {
                         if (a < 32768) {
                             modbus.ModbuswriteSingleRegister(slaveId, i, a);
                             modbus.ModbuswriteSingleRegister(slaveId, i + 1, 0);
-                            jLabel2.setText(jLabelName + "---设置成功");
+                            jLabel2.setText(jLabelName.trim() + "：设置成功");
                         } else {
                             if (a < 65536) {
                                 modbus.ModbuswriteSingleRegister(slaveId, i, a);
                                 modbus.ModbuswriteSingleRegister(slaveId, i + 1, 0);
-                                jLabel2.setText(jLabelName + "---设置成功");
+                                jLabel2.setText(jLabelName.trim() + "：设置成功");
                             } else {
                                 modbus.ModbuswriteSingleRegister(slaveId, i, dataTreat.tenToBinary(a)[0]);
                                 modbus.ModbuswriteSingleRegister(slaveId, i + 1, dataTreat.tenToBinary(a)[1]);
-                                jLabel2.setText(jLabelName + "---设置成功");
+                                jLabel2.setText(jLabelName.trim() + "：设置成功");
                             }
                         }
                     } catch (Exception e1) {
-                        jLabel2.setText(jLabelName + "---设置失败");
+                        jLabel2.setText(jLabelName.trim() + "：设置失败");
                         e1.printStackTrace();
                     }
                 } else {
-                    jLabel2.setText(jLabelName + "：端口未连接");
+                    jLabel2.setText(jLabelName.trim() + "：端口未连接");
                 }
             }
         });
@@ -100,20 +100,20 @@ public class NewJPanel extends JPanel {
                                 if (a < 32768) {
                                     modbus.ModbuswriteSingleRegister(slaveId, i, a);
                                     modbus.ModbuswriteSingleRegister(slaveId, i + 1, 0);
-                                    jLabel2.setText(jLabelName + "---设置成功");
+                                    jLabel2.setText(jLabelName.trim() + "：设置成功");
                                 } else {
                                     if (a < 65536) {
                                         modbus.ModbuswriteSingleRegister(slaveId, i, a);
                                         modbus.ModbuswriteSingleRegister(slaveId, i + 1, 0);
-                                        jLabel2.setText(jLabelName + "---设置成功");
+                                        jLabel2.setText(jLabelName.trim() + "：设置成功");
                                     } else {
                                         modbus.ModbuswriteSingleRegister(slaveId, i, dataTreat.tenToBinary(a)[0]);
                                         modbus.ModbuswriteSingleRegister(slaveId, i + 1, dataTreat.tenToBinary(a)[1]);
-                                        jLabel2.setText(jLabelName + "---设置成功");
+                                        jLabel2.setText(jLabelName.trim() + "：设置成功");
                                     }
                                 }
                             } else {
-                                jLabel2.setText(jLabelName + "---超出最大值");
+                                jLabel2.setText(jLabelName.trim() + "：超出最大值");
                             }
                         } else {
                             float f = Float.parseFloat(jTextField.getText());
@@ -122,25 +122,25 @@ public class NewJPanel extends JPanel {
                             if (a < 32768) {
                                 modbus.ModbuswriteSingleRegister(slaveId, i, a);
                                 modbus.ModbuswriteSingleRegister(slaveId, i + 1, 0);
-                                jLabel2.setText(jLabelName + "---设置成功");
+                                jLabel2.setText(jLabelName.trim() + "：设置成功");
                             } else {
                                 if (a < 65536) {
                                     modbus.ModbuswriteSingleRegister(slaveId, i, a);
                                     modbus.ModbuswriteSingleRegister(slaveId, i + 1, 0);
-                                    jLabel2.setText(jLabelName + "---设置成功");
+                                    jLabel2.setText(jLabelName.trim() + "：设置成功");
                                 } else {
                                     modbus.ModbuswriteSingleRegister(slaveId, i, dataTreat.tenToBinary(a)[0]);
                                     modbus.ModbuswriteSingleRegister(slaveId, i + 1, dataTreat.tenToBinary(a)[1]);
-                                    jLabel2.setText(jLabelName + "---设置成功");
+                                    jLabel2.setText(jLabelName.trim() + "：设置成功");
                                 }
                             }
                         }
                     } catch (Exception e1) {
-                        jLabel2.setText(jLabelName + "---设置失败");
+                        jLabel2.setText(jLabelName.trim() + "：设置失败");
                         e1.printStackTrace();
                     }
                 } else {
-                    jLabel2.setText(jLabelName + "：端口未连接");
+                    jLabel2.setText(jLabelName.trim() + "：端口未连接");
                 }
             }
         });
@@ -169,7 +169,7 @@ public class NewJPanel extends JPanel {
                 public void actionPerformed(ActionEvent e) {
                     for (int j = 0; j < newJPanel.length; j++) {
                         newJPanel[j].setbujinxifen(Integer.valueOf(jTextField.getText()));
-                        jLabel2.setText(jLabelName + "---设置成功");
+                        jLabel2.setText(jLabelName.trim() + "：设置成功");
                     }
                 }
             });
@@ -182,7 +182,7 @@ public class NewJPanel extends JPanel {
                 public void actionPerformed(ActionEvent e) {
                     for (int j = 0; j < newJPanel.length; j++) {
                         newJPanel[j].setwulisubi(Integer.valueOf(jTextField.getText()));
-                        jLabel2.setText(jLabelName + "---设置成功");
+                        jLabel2.setText(jLabelName.trim() + "：设置成功");
                     }
                 }
             });
@@ -207,7 +207,7 @@ public class NewJPanel extends JPanel {
         jButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 newJPanel.changeAddress(Integer.valueOf(jTextField.getText()));
-                jLabel2.setText(jLabelName + "---设置成功");
+                jLabel2.setText(jLabelName.trim() + "：设置成功");
             }
         });
     }
@@ -253,7 +253,7 @@ public class NewJPanel extends JPanel {
                 try {
                     modbus.ModbuswritetrueMultipleCoils(slaveId, i);
                 } catch (Exception e1) {
-                    jLabel2.setText(jButtonName + "---端口未连接");
+                    jLabel2.setText(jButtonName.trim() + "：端口未连接");
                 }
 
             }
@@ -262,7 +262,7 @@ public class NewJPanel extends JPanel {
                 try {
                     modbus.ModbuswritefalseMultipleCoils(slaveId, i);
                 } catch (Exception e1) {
-                    jLabel2.setText(jButtonName + "---端口未连接");
+                    jLabel2.setText(jButtonName.trim() + "：端口未连接");
                 }
 
             }
@@ -278,7 +278,7 @@ public class NewJPanel extends JPanel {
                         modbus.ModbuswritetrueMultipleCoils(slaveId, i);
                     }
                 } catch (Exception e1) {
-                    jLabel2.setText(jButtonName + "：端口未连接");
+                    jLabel2.setText(jButtonName.trim() + "：端口未连接");
                 }
 
             }
@@ -334,7 +334,7 @@ public class NewJPanel extends JPanel {
                         newJPanel.getJButton().removeActionListener(newJPanel.getJButton().getActionListeners()[0]);
                         newJPanel.getJButton().addMouseListener(newJPanel.getMouseAdapter());
                         System.out.println("切换成功");
-                        jLabel2.setText("<" + newJPanel.getJButton().getText() + ">" + "设为点动模式");
+                        jLabel2.setText("<" + newJPanel.getJButton().getText().trim() + ">" + "设为点动模式");
                     } catch (Exception e1) {
                         System.out.println("切换失败");
                     }
@@ -344,7 +344,7 @@ public class NewJPanel extends JPanel {
                         newJPanel.getJButton().removeMouseListener(newJPanel.getJButton().getMouseListeners()[1]); //[0]是按钮自带的MouseListener
                         newJPanel.getJButton().addActionListener(newJPanel.getActionListener());
                         System.out.println("切换成功");
-                        jLabel2.setText("<" + newJPanel.getJButton().getText() + ">" + "设为切换模式");
+                        jLabel2.setText("<" + newJPanel.getJButton().getText().trim() + ">" + "设为切换模式");
                     } catch (Exception e1) {
                         e1.printStackTrace();
                         System.out.println("切换失败");
@@ -422,30 +422,30 @@ public class NewJPanel extends JPanel {
         if (jComboBox.getSelectedIndex() == 0) {
             if (i < 8000) {
                 this.i = i;
-                jLabel.setText(getJButton().getText().trim() + "---设置成功");
+                jLabel.setText(getJButton().getText().trim() + "：设置成功");
             } else {
                 this.i = i + 16576;
-                jLabel.setText(getJButton().getText().trim() + "---设置成功");
+                jLabel.setText(getJButton().getText().trim() + "：设置成功");
             }
         } else if (jComboBox.getSelectedIndex() == 1) {
             if (i < 8) {
                 this.i = i + 18432;
-                jLabel.setText(getJButton().getText().trim() + "---设置成功");
+                jLabel.setText(getJButton().getText().trim() + "：设置成功");
             } else if (i == 8 || i == 9) {
                 jLabel.setText("Y地址错误");
             } else {
                 this.i = i + 18430;
-                jLabel.setText(getJButton().getText().trim() + "---设置成功");
+                jLabel.setText(getJButton().getText().trim() + "：设置成功");
             }
         } else if (jComboBox.getSelectedIndex() == 2) {
             if (i < 8) {
                 this.i = i + 16384;
-                jLabel.setText(getJButton().getText().trim() + "---设置成功");
+                jLabel.setText(getJButton().getText().trim() + "：设置成功");
             } else if (i == 8 || i == 9) {
                 jLabel.setText("Y地址错误");
             } else {
                 this.i = i + 16382;
-                jLabel.setText(getJButton().getText().trim() + "---设置成功");
+                jLabel.setText(getJButton().getText().trim() + "：设置成功");
             }
         }
     }

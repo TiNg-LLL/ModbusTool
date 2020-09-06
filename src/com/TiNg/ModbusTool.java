@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class ModbusTool {
     public static void main(String[] args) {
-        String windowName = "参数功能设置 v0.5.6";
+        String windowName = "参数功能设置 v0.5.7";
         int windowWidth = 770;
         int windowHeight = 450;
         FirstWindow firstWindow = new FirstWindow(windowName, windowWidth, windowHeight);

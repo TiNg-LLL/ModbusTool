@@ -103,7 +103,7 @@ public class FirstWindow extends JFrame {
         //顶部COM参数设置弹窗
         String comDataWindowName = "COM参数设置";
         int comDataWindowWidth = 700;
-        int comDataWindowHeight = 135;
+        int comDataWindowHeight = 100;
         NewWindow comDataWindow = new NewWindow(comDataWindowName, comDataWindowWidth, comDataWindowHeight, "res\\gear-icon.png");
 
         //顶部COM参数设置弹窗内内容
@@ -133,7 +133,7 @@ public class FirstWindow extends JFrame {
         doubleEvenJComboBox.setSelectedIndex(1);
         JLabel comAddressJLabel = new JLabel("    地址(默认1)：");
         JTextField comAddressJTextField = new JTextField(2);
-        comAddressJTextField.setText("1");
+        comAddressJTextField.setText(properties.getProperty("comSlaveId"));
         comDateWindowJPanel1.add(baudrateJLabel);
         comDateWindowJPanel1.add(baudrateJComboBox);
         comDateWindowJPanel1.add(dataBitJLabel);
@@ -149,8 +149,8 @@ public class FirstWindow extends JFrame {
         comDateWindowJPanel2.setPreferredSize(new Dimension(500, 10));
         comDateWindowJPanel2.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
         /**comDateWindowJPanel2.setBackground(Color.YELLOW);*/
-        JButton comDateSetJButton = new JButton("应用");
-        comDateWindowJPanel2.add(comDateSetJButton);
+        /**JButton comDateSetJButton = new JButton("应用");*/
+        /**comDateWindowJPanel2.add(comDateSetJButton);*/
 
         comDataWindow.add(comDateWindowJPanel1, BorderLayout.NORTH);
         comDataWindow.add(comDateWindowJPanel2, BorderLayout.CENTER);
@@ -279,7 +279,7 @@ public class FirstWindow extends JFrame {
         JPanel addressDataJPanel = new JPanel();
         addressDataJPanel.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
         addressDataWindow.add(addressDataJPanel);
-        int width= 300;
+        int width = 300;
         NewJPanel[] newJPanels = {lift4JPanel1, lift4JPanel3, lift4JPanel4, lift4JPanel5, lift4JPanel6, lift4JPanel7, lift4JPanel8}; //需要步进细分 物理速比的数组；
         NewJPanel addressDataJPanel1 = new NewJPanel(addressDataJPanel, width, 30, lift1Name1 + ":D", lift4JPanel1, dataMessage);
         NewJPanel addressDataJPanel2 = new NewJPanel(addressDataJPanel, width, 30, lift1Name2 + ":D", lift4JPanel2, dataMessage);
