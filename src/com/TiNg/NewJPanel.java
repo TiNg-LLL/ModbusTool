@@ -20,7 +20,8 @@ public class NewJPanel extends JPanel {
     MouseAdapter mouseAdapter;
     ActionListener actionListener;
 
-    public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, int addressData, Modbus modbus, int slaveId, JLabel jLabel2) {   //左侧四级JPanel
+    //左侧四级JPanel 无换算mm
+    public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, int addressData, Modbus modbus, int slaveId, JLabel jLabel2) {
         setPreferredSize(new Dimension(width, height));
         setLayout(new FlowLayout(FlowLayout.LEFT, 5, 2));
         /**setBackground(Color.LIGHT_GRAY);*/
@@ -68,7 +69,8 @@ public class NewJPanel extends JPanel {
         });
     }
 
-    public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, int addressData, Modbus modbus, int slaveId, JLabel jLabel2, int maxdataMM) {   //左侧四级JPanel
+    //左侧四级JPanel  换算mm
+    public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, int addressData, Modbus modbus, int slaveId, JLabel jLabel2, int maxdataMM) {
         setPreferredSize(new Dimension(width, height));
         setLayout(new FlowLayout(FlowLayout.LEFT, 5, 2));
         /**setBackground(Color.LIGHT_GRAY);*/
@@ -144,11 +146,12 @@ public class NewJPanel extends JPanel {
         });
     }
 
-    public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, NewJPanel[] newJPanel, JLabel jLabel2, String xifensubi, int bw) {   //左侧地址参数设置JPanel 步进细分
+    //左侧地址参数设置JPanel 步进细分
+    public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, NewJPanel[] newJPanel, JLabel jLabel2, String xifensubi, int bw) {
         setPreferredSize(new Dimension(width, height));
-        setLayout(new FlowLayout(FlowLayout.CENTER, 10, 2));
+        setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 2));
         /**setBackground(Color.LIGHT_GRAY);*/
-        JLabel jLabel = new JLabel(jLabelName);
+        JLabel jLabel = new JLabel(jLabelName.trim());
         jLabel.setFont(new Font("宋体", Font.PLAIN, 12));
         jTextField = new JTextField(6);
         jButton = new JButton("应用");
@@ -166,6 +169,7 @@ public class NewJPanel extends JPanel {
                 public void actionPerformed(ActionEvent e) {
                     for (int j = 0; j < newJPanel.length; j++) {
                         newJPanel[j].setbujinxifen(Integer.valueOf(jTextField.getText()));
+                        jLabel2.setText(jLabelName + "---设置成功");
                     }
                 }
             });
@@ -178,17 +182,19 @@ public class NewJPanel extends JPanel {
                 public void actionPerformed(ActionEvent e) {
                     for (int j = 0; j < newJPanel.length; j++) {
                         newJPanel[j].setwulisubi(Integer.valueOf(jTextField.getText()));
+                        jLabel2.setText(jLabelName + "---设置成功");
                     }
                 }
             });
         }
     }
 
-    public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, NewJPanel newJPanel, JLabel jLabel2) {   //左侧地址参数设置JPanel
+    //左侧地址参数设置JPanel
+    public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, NewJPanel newJPanel, JLabel jLabel2) {
         setPreferredSize(new Dimension(width, height));
-        setLayout(new FlowLayout(FlowLayout.LEFT, 10, 2));
+        setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 2));
         /**setBackground(Color.LIGHT_GRAY);*/
-        JLabel jLabel = new JLabel(jLabelName);
+        JLabel jLabel = new JLabel(jLabelName.trim());
         jLabel.setFont(new Font("宋体", Font.PLAIN, 12));
         jTextField = new JTextField(6);
         jTextField.setText(String.valueOf(newJPanel.getAddress()));
@@ -201,11 +207,13 @@ public class NewJPanel extends JPanel {
         jButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 newJPanel.changeAddress(Integer.valueOf(jTextField.getText()));
+                jLabel2.setText(jLabelName + "---设置成功");
             }
         });
     }
 
-    public NewJPanel(JPanel jPanel, int width, int height, String jButtonName, int addressData, Modbus modbus, int slaveId, JLabel jLabel2, int choose, String mory) {   //中部四级JPanel
+    //中部四级JPanel
+    public NewJPanel(JPanel jPanel, int width, int height, String jButtonName, int addressData, Modbus modbus, int slaveId, JLabel jLabel2, int choose, String mory) {
         setPreferredSize(new Dimension(width, height));
         setLayout(new FlowLayout(FlowLayout.LEFT, 5, 0));
         /**setBackground(Color.LIGHT_GRAY);*/
@@ -245,7 +253,7 @@ public class NewJPanel extends JPanel {
                 try {
                     modbus.ModbuswritetrueMultipleCoils(slaveId, i);
                 } catch (Exception e1) {
-                    jLabel2.setText(jButtonName + "：端口未连接");
+                    jLabel2.setText(jButtonName + "---端口未连接");
                 }
 
             }
@@ -254,7 +262,7 @@ public class NewJPanel extends JPanel {
                 try {
                     modbus.ModbuswritefalseMultipleCoils(slaveId, i);
                 } catch (Exception e1) {
-                    jLabel2.setText(jButtonName + "：端口未连接");
+                    jLabel2.setText(jButtonName + "---端口未连接");
                 }
 
             }
@@ -283,11 +291,12 @@ public class NewJPanel extends JPanel {
         }
     }
 
-    public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, NewJPanel newJPanel, JLabel jLabel2, String meiluanyong) {      //中部线圈地址参数设置JPanel
+    //中部线圈地址参数设置JPanel
+    public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, NewJPanel newJPanel, JLabel jLabel2, String meiluanyong) {
         setPreferredSize(new Dimension(width, height));
         setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 2));
         /**setBackground(Color.LIGHT_GRAY);*/
-        JLabel jLabel = new JLabel(jLabelName);
+        JLabel jLabel = new JLabel(jLabelName.trim());
         jLabel.setFont(new Font("宋体", Font.PLAIN, 12));
         jComboBox.addItem("M");
         jComboBox.addItem("Y");
@@ -345,10 +354,11 @@ public class NewJPanel extends JPanel {
         });
     }
 
-    public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, int addressData, Modbus modbus, int slaveId, JLabel jLabel2, String meiluanyong1) {   //左侧四级JPanel
+    //四级JPanel   暂无用
+/*    public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, int addressData, Modbus modbus, int slaveId, JLabel jLabel2, String meiluanyong1) {
         setPreferredSize(new Dimension(width, height));
         setLayout(new FlowLayout(FlowLayout.LEFT, 5, 2));
-        /**setBackground(Color.LIGHT_GRAY);*/
+        //setBackground(Color.LIGHT_GRAY);
         JLabel jLabel = new JLabel(jLabelName);
         jLabel.setFont(new Font("宋体", Font.PLAIN, 12));
         JComboBox<String> jComboBox = new JComboBox<String>();
@@ -365,7 +375,9 @@ public class NewJPanel extends JPanel {
             }
         });
     }
+*/
 
+    //方法段-------------------------------------------------------------------------------------------------------------
     public JLabel setNowData() {
         return jLabel1;
     }
@@ -410,30 +422,30 @@ public class NewJPanel extends JPanel {
         if (jComboBox.getSelectedIndex() == 0) {
             if (i < 8000) {
                 this.i = i;
-                jLabel.setText(getJButton().getText() + "设置成功");
+                jLabel.setText(getJButton().getText().trim() + "---设置成功");
             } else {
                 this.i = i + 16576;
-                jLabel.setText(getJButton().getText() + "设置成功");
+                jLabel.setText(getJButton().getText().trim() + "---设置成功");
             }
         } else if (jComboBox.getSelectedIndex() == 1) {
             if (i < 8) {
                 this.i = i + 18432;
-                jLabel.setText(getJButton().getText() + "设置成功");
+                jLabel.setText(getJButton().getText().trim() + "---设置成功");
             } else if (i == 8 || i == 9) {
                 jLabel.setText("Y地址错误");
             } else {
                 this.i = i + 18430;
-                jLabel.setText(getJButton().getText() + "设置成功");
+                jLabel.setText(getJButton().getText().trim() + "---设置成功");
             }
         } else if (jComboBox.getSelectedIndex() == 2) {
             if (i < 8) {
                 this.i = i + 16384;
-                jLabel.setText(getJButton().getText() + "设置成功");
+                jLabel.setText(getJButton().getText().trim() + "---设置成功");
             } else if (i == 8 || i == 9) {
                 jLabel.setText("Y地址错误");
             } else {
                 this.i = i + 16382;
-                jLabel.setText(getJButton().getText() + "设置成功");
+                jLabel.setText(getJButton().getText().trim() + "---设置成功");
             }
         }
     }
