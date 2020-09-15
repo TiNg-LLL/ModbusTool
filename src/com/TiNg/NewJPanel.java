@@ -292,7 +292,7 @@ public class NewJPanel extends JPanel {
     }
 
     //中部线圈地址参数设置JPanel
-    public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, NewJPanel newJPanel, JLabel jLabel2, String meiluanyong) {
+    public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, NewJPanel newJPanel, JLabel jLabel2, String xianquan) {
         setPreferredSize(new Dimension(width, height));
         setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 2));
         /**setBackground(Color.LIGHT_GRAY);*/
@@ -354,28 +354,25 @@ public class NewJPanel extends JPanel {
         });
     }
 
-    //四级JPanel   暂无用
-/*    public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, int addressData, Modbus modbus, int slaveId, JLabel jLabel2, String meiluanyong1) {
+    //当前位置
+    public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, int addressData, Modbus modbus, int slaveId, JLabel jLabel2, String dangqianweizhi) {
         setPreferredSize(new Dimension(width, height));
-        setLayout(new FlowLayout(FlowLayout.LEFT, 5, 2));
-        //setBackground(Color.LIGHT_GRAY);
+        setLayout(new FlowLayout(FlowLayout.LEFT, 5, 7));
+        /**setBackground(Color.LIGHT_GRAY);*/
         JLabel jLabel = new JLabel(jLabelName);
         jLabel.setFont(new Font("宋体", Font.PLAIN, 12));
-        JComboBox<String> jComboBox = new JComboBox<String>();
-        JButton jButton = new JButton("应用");
+        jTextField = new JTextField(6);
+        jButton = new JButton("应用");
+        jLabel1 = new JLabel("`：                         ");
+        jLabel1.setFont(new Font("宋体", Font.PLAIN, 12));
         add(jLabel);
-        add(jComboBox);
-        add(jButton);
+        //add(jTextField);
+        //add(jButton);
+        add(jLabel1);
         jPanel.add(this);
         this.changeAddress(addressData);
-
-        jButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
     }
-*/
+
 
     //方法段-------------------------------------------------------------------------------------------------------------
     public JLabel setNowData() {
