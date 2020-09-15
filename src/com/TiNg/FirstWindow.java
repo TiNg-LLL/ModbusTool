@@ -3,16 +3,19 @@ package com.TiNg;
 import com.fazecast.jSerialComm.SerialPort;
 
 import javax.swing.*;
+import javax.xml.crypto.Data;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 import java.util.List;
-import java.util.Properties;
 
 public class FirstWindow extends JFrame {
 
@@ -26,6 +29,24 @@ public class FirstWindow extends JFrame {
     //配置文件设置
     Properties properties = new Properties();
     FileInputStream inputStream;
+
+    LocalDate date = LocalDate.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    String nowTime = date.format(formatter);
+    String endTime = new String("13-12-2020");
+    SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+    Boolean b5;
+
+    {
+        try {
+            Date sd1 = df.parse(endTime);
+            Date sd2 = df.parse(nowTime);
+            b5 = sd1.after(sd2);
+        } catch (
+                ParseException parseException) {
+            parseException.printStackTrace();
+        }
+    }
 
     {
         try {
@@ -163,35 +184,39 @@ public class FirstWindow extends JFrame {
                 int dataBit = Integer.parseInt(dataBitJTextField.getText());
                 int stopBit = Integer.parseInt(stopBitJTextField.getText());
                 String doubleEven = doubleEvenJComboBox.getSelectedItem().toString();
-                if (connectButton.getText().equals("连接")) {
-                    modbus.ModbusConnect(comName, baudrate, dataBit, stopBit, doubleEven);
-                    if (modbus.ModbusisConnected()) {
-                        System.out.println("COM端口已连接成功");
-                        comMessage.setText("COM端口已连接成功");
-                        dataMessage.setText(" ");
-                        comList.setEnabled(false);
-                        comflashButton.setEnabled(false);
-                        comDataSetButton.setEnabled(false);
-                        connectButton.setText("断开");
-                        top1JPanel.setBackground(Color.GREEN);
+                if (b5) {
+                    if (connectButton.getText().equals("连接")) {
+                        modbus.ModbusConnect(comName, baudrate, dataBit, stopBit, doubleEven);
+                        if (modbus.ModbusisConnected()) {
+                            System.out.println("COM端口已连接成功");
+                            comMessage.setText("COM端口已连接成功");
+                            dataMessage.setText(" ");
+                            comList.setEnabled(false);
+                            comflashButton.setEnabled(false);
+                            comDataSetButton.setEnabled(false);
+                            connectButton.setText("断开");
+                            top1JPanel.setBackground(Color.GREEN);
+                        } else {
+                            System.out.println("COM端口连接失败");
+                            comMessage.setText("COM端口连接失败");
+                        }
                     } else {
-                        System.out.println("COM端口连接失败");
-                        comMessage.setText("COM端口连接失败");
+                        modbus.ModbusDisconnect();
+                        System.out.println("COM端口已断开");
+                        comMessage.setText("COM端口已断开");
+                        comList.setEnabled(true);
+                        comflashButton.setEnabled(true);
+                        comDataSetButton.setEnabled(true);
+                        connectButton.setText("连接");
+                        top1JPanel.setBackground(Color.LIGHT_GRAY);
+                        try {
+                            Thread.sleep(100);
+                        } catch (Exception e1) {
+                        }
+                        dataMessage.setText(" ");
                     }
                 } else {
-                    modbus.ModbusDisconnect();
-                    System.out.println("COM端口已断开");
-                    comMessage.setText("COM端口已断开");
-                    comList.setEnabled(true);
-                    comflashButton.setEnabled(true);
-                    comDataSetButton.setEnabled(true);
-                    connectButton.setText("连接");
-                    top1JPanel.setBackground(Color.LIGHT_GRAY);
-                    try {
-                        Thread.sleep(100);
-                    } catch (Exception e1) {
-                    }
-                    dataMessage.setText(" ");
+                    comMessage.setText("已过期");
                 }
             }
         });
