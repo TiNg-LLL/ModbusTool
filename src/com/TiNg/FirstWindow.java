@@ -249,7 +249,7 @@ public class FirstWindow extends JFrame {
 
         //中部主功能三级左侧JPanel2
         JPanel lift3JPanel2 = new JPanel();
-        lift3JPanel2.setPreferredSize(new Dimension(390, 60));
+        lift3JPanel2.setPreferredSize(new Dimension(390, 28));
         lift3JPanel2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 0));
         /**lift3JPanel2.setBackground(Color.DARK_GRAY);*/
         middle2JPanel1.add(lift3JPanel2, BorderLayout.SOUTH);
@@ -355,7 +355,7 @@ public class FirstWindow extends JFrame {
 
         //中部主功能三级中间JPanel2
         JPanel middle3JPanel2 = new JPanel();
-        middle3JPanel2.setPreferredSize(new Dimension(310, 60));
+        middle3JPanel2.setPreferredSize(new Dimension(310, 28));
         middle3JPanel2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 0));
         /**middle3JPanel2.setBackground(Color.GREEN);*/
         middle2JPanel2.add(middle3JPanel2, BorderLayout.SOUTH);
