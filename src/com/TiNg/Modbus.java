@@ -39,7 +39,7 @@ public class Modbus {
             mm.setResponseTimeout(100);
             mm.connect();
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 
@@ -48,7 +48,7 @@ public class Modbus {
         try {
             mm.disconnect();
         } catch (ModbusIOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 
@@ -81,11 +81,11 @@ public class Modbus {
             int[] i = mm.readHoldingRegisters(slaveId, offset, quantity);
             return i;
         } catch (ModbusProtocolException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         } catch (ModbusNumberException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         } catch (ModbusIOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         return null;
     }
@@ -109,11 +109,11 @@ public class Modbus {
         try {
             mm.writeMultipleCoils(slaveId, offset, b);
         } catch (ModbusProtocolException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         } catch (ModbusNumberException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         } catch (ModbusIOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 
@@ -122,11 +122,11 @@ public class Modbus {
             boolean[] b = mm.readCoils(slaveId, offset, quantity);
             return b;
         } catch (ModbusProtocolException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         } catch (ModbusNumberException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         } catch (ModbusIOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         return null;
     }

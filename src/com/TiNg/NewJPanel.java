@@ -360,11 +360,11 @@ public class NewJPanel extends JPanel {
         setLayout(new FlowLayout(FlowLayout.LEFT, 5, 7));
         /**setBackground(Color.LIGHT_GRAY);*/
         JLabel jLabel = new JLabel(jLabelName);
-        jLabel.setFont(new Font("宋体", Font.PLAIN, 12));
+        jLabel.setFont(new Font("宋体", Font.PLAIN, 15));
         jTextField = new JTextField(6);
         jButton = new JButton("应用");
-        jLabel1 = new JLabel("`：                         ");
-        jLabel1.setFont(new Font("宋体", Font.PLAIN, 12));
+        jLabel1 = new JLabel("`：             ");
+        jLabel1.setFont(new Font("宋体", Font.BOLD, 15));
         add(jLabel);
         //add(jTextField);
         //add(jButton);
