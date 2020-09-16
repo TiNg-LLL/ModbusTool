@@ -263,7 +263,7 @@ public class FirstWindow extends JFrame {
         String lift1Name6 = "     上层位置(mm)";
         String lift1Name7 = "     下层位置(mm)";
         String lift1Name8 = "     材料厚度(mm)";
-        String lift1Name9 = "     当前位置(mm)";
+        String lift1Name9 = "        当前位置(mm)";
         boolean b1 = true;
         boolean b2 = true;
         boolean b3 = true;
