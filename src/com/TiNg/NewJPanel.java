@@ -19,6 +19,7 @@ public class NewJPanel extends JPanel {
     JButton jButton;
     MouseAdapter mouseAdapter;
     ActionListener actionListener;
+    int addressData;
 
     //左侧四级JPanel 无换算mm
     public NewJPanel(JPanel jPanel, int width, int height, String jLabelName, int addressData, Modbus modbus, int slaveId, JLabel jLabel2) {
@@ -36,6 +37,7 @@ public class NewJPanel extends JPanel {
         add(jButton);
         add(jLabel1);
         jPanel.add(this);
+        this.addressData = addressData;
         this.changeAddress(addressData);
 
         jButton.addActionListener(new ActionListener() {
@@ -43,21 +45,26 @@ public class NewJPanel extends JPanel {
                 if (modbus.ModbusisConnected()) {
                     try {
                         int a = Integer.valueOf(jTextField.getText());
-                        if (a < 32768) {
-                            modbus.ModbuswriteSingleRegister(slaveId, i, a);
-                            modbus.ModbuswriteSingleRegister(slaveId, i + 1, 0);
-                            jLabel2.setText(jLabelName.trim() + "：设置成功");
-                        } else {
-                            if (a < 65536) {
+                        if (a < 10000) {
+                            if (a < 32768) {
                                 modbus.ModbuswriteSingleRegister(slaveId, i, a);
                                 modbus.ModbuswriteSingleRegister(slaveId, i + 1, 0);
                                 jLabel2.setText(jLabelName.trim() + "：设置成功");
                             } else {
-                                modbus.ModbuswriteSingleRegister(slaveId, i, dataTreat.tenToBinary(a)[0]);
-                                modbus.ModbuswriteSingleRegister(slaveId, i + 1, dataTreat.tenToBinary(a)[1]);
-                                jLabel2.setText(jLabelName.trim() + "：设置成功");
+                                if (a < 65536) {
+                                    modbus.ModbuswriteSingleRegister(slaveId, i, a);
+                                    modbus.ModbuswriteSingleRegister(slaveId, i + 1, 0);
+                                    jLabel2.setText(jLabelName.trim() + "：设置成功");
+                                } else {
+                                    modbus.ModbuswriteSingleRegister(slaveId, i, dataTreat.tenToBinary(a)[0]);
+                                    modbus.ModbuswriteSingleRegister(slaveId, i + 1, dataTreat.tenToBinary(a)[1]);
+                                    jLabel2.setText(jLabelName.trim() + "：设置成功");
+                                }
                             }
+                        } else {
+                            jLabel2.setText(jLabelName.trim() + "：超出最大值");
                         }
+
                     } catch (Exception e1) {
                         jLabel2.setText(jLabelName.trim() + "：设置失败");
                         e1.printStackTrace();
@@ -85,6 +92,7 @@ public class NewJPanel extends JPanel {
         add(jButton);
         add(jLabel1);
         jPanel.add(this);
+        this.addressData = addressData;
         this.changeAddress(addressData);
         this.maxdataMM = maxdataMM;
 
@@ -197,7 +205,7 @@ public class NewJPanel extends JPanel {
         JLabel jLabel = new JLabel(jLabelName.trim());
         jLabel.setFont(new Font("宋体", Font.PLAIN, 12));
         jTextField = new JTextField(6);
-        jTextField.setText(String.valueOf(newJPanel.getAddress()));
+        jTextField.setText(String.valueOf(newJPanel.getAddressData()));
         jButton = new JButton("应用");
         add(jLabel);
         add(jTextField);
@@ -225,6 +233,21 @@ public class NewJPanel extends JPanel {
         jPanel.add(this);
         this.mory = mory;
         i = addressData;
+
+        if (jButtonName.equals("  启动  ")) {
+            jButton.setBackground(Color.GREEN);
+            jButton.setFont(new java.awt.Font("宋体", 1, 16));
+            Dimension preferredSize = new Dimension(80, 50);
+            jButton.setPreferredSize(preferredSize);
+            jButton.setBorder(BorderFactory.createRaisedBevelBorder());
+        }
+        if (jButtonName.equals("  停止  ")) {
+            jButton.setBackground(Color.red);
+            jButton.setFont(new java.awt.Font("宋体", 1, 16));
+            Dimension preferredSize = new Dimension(80, 50);
+            jButton.setPreferredSize(preferredSize);
+            jButton.setBorder(BorderFactory.createRaisedBevelBorder());
+        }
 
         if (mory.equals("M")) {
             if (i < 8000) {
@@ -370,6 +393,7 @@ public class NewJPanel extends JPanel {
         //add(jButton);
         add(jLabel1);
         jPanel.add(this);
+        this.addressData = addressData;
         this.changeAddress(addressData);
     }
 
@@ -381,6 +405,18 @@ public class NewJPanel extends JPanel {
 
     public int getAddress() {
         return i;
+    }
+
+    public void changeAddress(int i) {
+        if (i < 8000) {
+            this.i = i;
+        } else {
+            this.i = i + 8384;
+        }
+    }
+
+    public int getAddressData() {
+        return addressData;
     }
 
     public void setbujinxifen(int bujinxifen) {
@@ -405,14 +441,6 @@ public class NewJPanel extends JPanel {
 
     public JTextField getJTextField() {
         return jTextField;
-    }
-
-    public void changeAddress(int i) {
-        if (i < 8000) {
-            this.i = i;
-        } else {
-            this.i = i + 8384;
-        }
     }
 
     public void coilChangeAddress(int i, JComboBox jComboBox, JLabel jLabel) {
