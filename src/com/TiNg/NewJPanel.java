@@ -39,6 +39,7 @@ public class NewJPanel extends JPanel {
         jPanel.add(this);
         this.addressData = addressData;
         this.changeAddress(addressData);
+        maxdataMM = 1;
 
         jButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -237,14 +238,14 @@ public class NewJPanel extends JPanel {
         if (jButtonName.equals("  启动  ")) {
             jButton.setBackground(Color.GREEN);
             jButton.setFont(new java.awt.Font("宋体", 1, 16));
-            Dimension preferredSize = new Dimension(80, 50);
+            Dimension preferredSize = new Dimension(86, 50);
             jButton.setPreferredSize(preferredSize);
             jButton.setBorder(BorderFactory.createRaisedBevelBorder());
         }
         if (jButtonName.equals("  停止  ")) {
             jButton.setBackground(Color.red);
             jButton.setFont(new java.awt.Font("宋体", 1, 16));
-            Dimension preferredSize = new Dimension(80, 50);
+            Dimension preferredSize = new Dimension(86, 50);
             jButton.setPreferredSize(preferredSize);
             jButton.setBorder(BorderFactory.createRaisedBevelBorder());
         }
@@ -395,6 +396,7 @@ public class NewJPanel extends JPanel {
         jPanel.add(this);
         this.addressData = addressData;
         this.changeAddress(addressData);
+        maxdataMM = 2;
     }
 
 
@@ -405,6 +407,10 @@ public class NewJPanel extends JPanel {
 
     public int getAddress() {
         return i;
+    }
+
+    public int getMaxdataMM() {
+        return maxdataMM;
     }
 
     public void changeAddress(int i) {

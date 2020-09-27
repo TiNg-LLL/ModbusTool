@@ -291,6 +291,7 @@ public class FirstWindow extends JFrame {
         lift4JPanel7.setVisible(b7);
         lift4JPanel8.setVisible(b8);
         lift4JPanel9.setVisible(b9);
+        NewJPanel[] newJPanelsLift = {lift4JPanel1, lift4JPanel2, lift4JPanel3, lift4JPanel4, lift4JPanel5, lift4JPanel6, lift4JPanel7, lift4JPanel8, lift4JPanel9};
         JButton addressDataSetButton = new JButton("寄存器地址参数设置");
         JButton alladdressDataSetButton = new JButton("设置");
         lift3JPanel2.add(addressDataSetButton);
@@ -305,7 +306,7 @@ public class FirstWindow extends JFrame {
         addressDataJPanel.setLayout(new FlowLayout(FlowLayout.RIGHT, 5, 5));
         addressDataWindow.add(addressDataJPanel);
         int width = 300;
-        NewJPanel[] newJPanels = {lift4JPanel6, lift4JPanel7, lift4JPanel8, lift4JPanel9}; //需要步进细分 物理速比的数组；
+        NewJPanel[] newJPanelsBJXF = {lift4JPanel6, lift4JPanel7, lift4JPanel8, lift4JPanel9}; //需要步进细分 物理速比的数组；
         NewJPanel addressDataJPanel1 = new NewJPanel(addressDataJPanel, width, 30, lift1Name1 + ":D", lift4JPanel1, dataMessage);
         NewJPanel addressDataJPanel2 = new NewJPanel(addressDataJPanel, width, 30, lift1Name2 + ":D", lift4JPanel2, dataMessage);
         NewJPanel addressDataJPanel3 = new NewJPanel(addressDataJPanel, width, 30, lift1Name3 + ":D", lift4JPanel3, dataMessage);
@@ -315,8 +316,8 @@ public class FirstWindow extends JFrame {
         NewJPanel addressDataJPanel7 = new NewJPanel(addressDataJPanel, width, 30, lift1Name7 + ":D", lift4JPanel7, dataMessage);
         NewJPanel addressDataJPanel8 = new NewJPanel(addressDataJPanel, width, 30, lift1Name8 + ":D", lift4JPanel8, dataMessage);
         NewJPanel addressDataJPanel9 = new NewJPanel(addressDataJPanel, width, 30, lift1Name9 + ":D", lift4JPanel9, dataMessage);
-        NewJPanel addressDataJPanel81 = new NewJPanel(addressDataJPanel, width, 30, "步进细分", newJPanels, dataMessage, properties.getProperty("bujinxifen"), 1);
-        NewJPanel addressDataJPanel82 = new NewJPanel(addressDataJPanel, width, 30, "物理速比", newJPanels, dataMessage, properties.getProperty("wulisubi"), 2);
+        NewJPanel addressDataJPanel81 = new NewJPanel(addressDataJPanel, width, 30, "步进细分", newJPanelsBJXF, dataMessage, properties.getProperty("bujinxifen"), 1);
+        NewJPanel addressDataJPanel82 = new NewJPanel(addressDataJPanel, width, 30, "物理速比", newJPanelsBJXF, dataMessage, properties.getProperty("wulisubi"), 2);
         addressDataJPanel1.setVisible(b1);
         addressDataJPanel2.setVisible(b2);
         addressDataJPanel3.setVisible(b3);
@@ -401,6 +402,7 @@ public class FirstWindow extends JFrame {
         middle4JPanel8.setVisible(b88);
         middle4JPanel9.setVisible(b99);
         middle4JPanel10.setVisible(b100);
+        NewJPanel[] newJPanelsMiddle = {middle4JPanel1, middle4JPanel2, middle4JPanel3, middle4JPanel4, middle4JPanel5, middle4JPanel6, middle4JPanel7, middle4JPanel8, middle4JPanel9, middle4JPanel10};
         JButton coiladdressDataSetButton = new JButton("线圈地址参数设置");
         middle3JPanel2.add(coiladdressDataSetButton);
 
@@ -534,11 +536,134 @@ public class FirstWindow extends JFrame {
         //FirstWindow主窗口实现
         setVisible(true);
 
-        //读取线程
-
-        class ReadThread extends Thread {
+        //com端口已连接成功线程
+        class ComLineThread extends Thread {
             final int[] ii = {1};
 
+            public void run() {
+                while (true) {
+                    try {
+                        Thread.sleep(500);
+                    } catch (Exception e) {
+                    }
+                    if (modbus.ModbusisConnected()) {
+                        if (ii[0] == 1) {
+                            comMessage.setText("COM端口已连接成功");
+                        } else if (ii[0] == 2) {
+                            comMessage.setText("COM端口已连接成功》");
+                        } else if (ii[0] == 3) {
+                            comMessage.setText("COM端口已连接成功》》");
+                        } else if (ii[0] == 4) {
+                            comMessage.setText("COM端口已连接成功》》》");
+                        } else if (ii[0] == 5) {
+                            comMessage.setText("COM端口已连接成功《《《");
+                        } else if (ii[0] == 6) {
+                            comMessage.setText("COM端口已连接成功《《");
+                        } else if (ii[0] == 7) {
+                            comMessage.setText("COM端口已连接成功《");
+                            ii[0] = 0;
+                        }
+                        ii[0]++;
+                    }
+                }
+            }
+        }
+        ComLineThread comLineThread = new ComLineThread();
+        comLineThread.start();
+
+        //寄存器读取线程
+        for (int i = 0; i < newJPanelsLift.length; i++) {
+            int t = i;
+            class RegisterReadThread extends Thread {
+                public void run() {
+                    if (newJPanelsLift[t].maxdataMM == 1) {
+                        while (true) {
+                            try {
+                                Thread.sleep(1000);
+                            } catch (Exception e) {
+                            }
+                            try {
+                                if (modbus.ModbusisConnected()) {
+                                    int[] i1 = modbus.ModbusreadHoldingRegisters(Integer.valueOf(comAddressJTextField.getText()), newJPanelsLift[t].getAddress(), 2);
+                                    newJPanelsLift[t].setNowData().setText("当前值：" + dataTreat.readtenToBinary(i1));
+                                } else {
+                                    newJPanelsLift[t].setNowData().setText("当前值：");
+                                }
+                            } catch (Exception e) {
+                                newJPanelsLift[t].setNowData().setText("当前值：null");
+                            }
+                        }
+                    } else if (newJPanelsLift[t].maxdataMM == 10 || newJPanelsLift[t].maxdataMM == 0) {
+                        while (true) {
+                            try {
+                                Thread.sleep(1000);
+                            } catch (Exception e) {
+                            }
+                            try {
+                                if (modbus.ModbusisConnected()) {
+                                    int[] i1 = modbus.ModbusreadHoldingRegisters(Integer.valueOf(comAddressJTextField.getText()), newJPanelsLift[t].getAddress(), 2);
+                                    newJPanelsLift[t].setNowData().setText("当前值：" + dataTreat.readtenToBinarytoMM(i1, newJPanelsLift[t]));
+                                } else {
+                                    newJPanelsLift[t].setNowData().setText("当前值：");
+                                }
+                            } catch (Exception e) {
+                                newJPanelsLift[t].setNowData().setText("当前值：null");
+                            }
+                        }
+                    } else if (newJPanelsLift[t].maxdataMM == 2) {
+                        while (true) {
+                            try {
+                                Thread.sleep(500);
+                            } catch (Exception e) {
+                            }
+                            try {
+                                if (modbus.ModbusisConnected()) {
+                                    int[] i1 = modbus.ModbusreadHoldingRegisters(Integer.valueOf(comAddressJTextField.getText()), newJPanelsLift[t].getAddress(), 2);
+                                    newJPanelsLift[t].setNowData().setText("：" + dataTreat.readtenToBinarytoMM(i1, newJPanelsLift[t]));
+                                } else {
+                                    newJPanelsLift[t].setNowData().setText("：");
+                                }
+                            } catch (Exception e) {
+                                newJPanelsLift[t].setNowData().setText("：null");
+                            }
+                        }
+                    }
+                }
+            }
+            RegisterReadThread registerReadThread = new RegisterReadThread();
+            registerReadThread.start();
+        }
+
+        //线圈读取线程
+        for (int i = 0; i < newJPanelsMiddle.length; i++) {
+            int t = i;
+            class CoilReadThread extends Thread {
+                public void run() {
+                    while (true) {
+                        try {
+                            Thread.sleep(500);
+                        } catch (Exception e) {
+                        }
+                        try {
+                            if (modbus.ModbusisConnected()) {
+                                boolean[] b1 = modbus.ModbusreadCoils(Integer.valueOf(comAddressJTextField.getText()), newJPanelsMiddle[t].getAddress(), 1);
+                                newJPanelsMiddle[t].setNowData().setText("当前值：" + b1[0]);
+                            } else {
+                                newJPanelsMiddle[t].setNowData().setText("当前值：");
+                            }
+                        } catch (Exception e) {
+                            newJPanelsMiddle[t].setNowData().setText("当前值：null");
+                        }
+                    }
+                }
+            }
+            CoilReadThread registerReadThread = new CoilReadThread();
+            registerReadThread.start();
+        }
+
+
+/*        //读取线程
+        class ReadThread extends Thread {
             public void run() {
                 while (true) {
                     try {
@@ -547,23 +672,6 @@ public class FirstWindow extends JFrame {
                     }
                     try {
                         if (modbus.ModbusisConnected()) {
-                            if (ii[0] == 1) {
-                                comMessage.setText("COM端口已连接成功");
-                            } else if (ii[0] == 2) {
-                                comMessage.setText("COM端口已连接成功》");
-                            } else if (ii[0] == 3) {
-                                comMessage.setText("COM端口已连接成功》》");
-                            } else if (ii[0] == 4) {
-                                comMessage.setText("COM端口已连接成功》》》");
-                            } else if (ii[0] == 5) {
-                                comMessage.setText("COM端口已连接成功《《《");
-                            } else if (ii[0] == 6) {
-                                comMessage.setText("COM端口已连接成功《《");
-                            } else if (ii[0] == 7) {
-                                comMessage.setText("COM端口已连接成功《");
-                                ii[0] = 0;
-                            }
-                            ii[0]++;
                             int[] i1 = modbus.ModbusreadHoldingRegisters(Integer.valueOf(comAddressJTextField.getText()), lift4JPanel1.getAddress(), 2);
                             int[] i2 = modbus.ModbusreadHoldingRegisters(Integer.valueOf(comAddressJTextField.getText()), lift4JPanel2.getAddress(), 2);
                             int[] i3 = modbus.ModbusreadHoldingRegisters(Integer.valueOf(comAddressJTextField.getText()), lift4JPanel3.getAddress(), 2);
@@ -653,7 +761,7 @@ public class FirstWindow extends JFrame {
         }
         ;
         ReadThread readThread = new ReadThread();
-        readThread.start();
+        readThread.start();*/
     }
 
     //方法---------------------------------------------------------------------------------------------------------------
