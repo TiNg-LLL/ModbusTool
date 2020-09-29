@@ -238,14 +238,14 @@ public class NewJPanel extends JPanel {
         if (jButtonName.equals("  启动  ")) {
             jButton.setBackground(Color.GREEN);
             jButton.setFont(new java.awt.Font("宋体", 1, 16));
-            Dimension preferredSize = new Dimension(86, 50);
+            Dimension preferredSize = new Dimension(86, 30);
             jButton.setPreferredSize(preferredSize);
             jButton.setBorder(BorderFactory.createRaisedBevelBorder());
         }
         if (jButtonName.equals("  停止  ")) {
             jButton.setBackground(Color.red);
             jButton.setFont(new java.awt.Font("宋体", 1, 16));
-            Dimension preferredSize = new Dimension(86, 50);
+            Dimension preferredSize = new Dimension(86, 30);
             jButton.setPreferredSize(preferredSize);
             jButton.setBorder(BorderFactory.createRaisedBevelBorder());
         }
@@ -387,7 +387,7 @@ public class NewJPanel extends JPanel {
         jLabel.setFont(new Font("宋体", Font.BOLD, 15));
         jTextField = new JTextField(6);
         jButton = new JButton("应用");
-        jLabel1 = new JLabel("`：             ");
+        jLabel1 = new JLabel("：             ");
         jLabel1.setFont(new Font("宋体", Font.BOLD, 15));
         add(jLabel);
         //add(jTextField);
