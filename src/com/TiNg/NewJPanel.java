@@ -46,7 +46,7 @@ public class NewJPanel extends JPanel {
                 if (modbus.ModbusisConnected()) {
                     try {
                         int a = Integer.valueOf(jTextField.getText());
-                        if (a < 10000) {
+                        if (a < 15000) {
                             if (a < 32768) {
                                 modbus.ModbuswriteSingleRegister(slaveId, i, a);
                                 modbus.ModbuswriteSingleRegister(slaveId, i + 1, 0);
@@ -71,7 +71,7 @@ public class NewJPanel extends JPanel {
                         e1.printStackTrace();
                     }
                 } else {
-                    jLabel2.setText(jLabelName.trim() + "：端口未连接");
+                    jLabel2.setText(jLabelName.trim() + "：端口无响应");
                 }
             }
         });
@@ -149,7 +149,7 @@ public class NewJPanel extends JPanel {
                         e1.printStackTrace();
                     }
                 } else {
-                    jLabel2.setText(jLabelName.trim() + "：端口未连接");
+                    jLabel2.setText(jLabelName.trim() + "：端口无响应");
                 }
             }
         });
@@ -277,7 +277,7 @@ public class NewJPanel extends JPanel {
                 try {
                     modbus.ModbuswritetrueMultipleCoils(slaveId, i);
                 } catch (Exception e1) {
-                    jLabel2.setText(jButtonName.trim() + "：端口未连接");
+                    jLabel2.setText(jButtonName.trim() + "：端口无响应");
                 }
 
             }
@@ -286,7 +286,7 @@ public class NewJPanel extends JPanel {
                 try {
                     modbus.ModbuswritefalseMultipleCoils(slaveId, i);
                 } catch (Exception e1) {
-                    jLabel2.setText(jButtonName.trim() + "：端口未连接");
+                    //jLabel2.setText(jButtonName.trim() + "：端口无响应");
                 }
 
             }
@@ -302,7 +302,7 @@ public class NewJPanel extends JPanel {
                         modbus.ModbuswritetrueMultipleCoils(slaveId, i);
                     }
                 } catch (Exception e1) {
-                    jLabel2.setText(jButtonName.trim() + "：端口未连接");
+                    jLabel2.setText(jButtonName.trim() + "：端口无响应");
                 }
 
             }

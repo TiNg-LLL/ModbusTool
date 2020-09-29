@@ -36,7 +36,7 @@ public class Modbus {
         }
         try {
             mm = ModbusMasterFactory.createModbusMasterRTU(sp);
-            mm.setResponseTimeout(15);
+            mm.setResponseTimeout(20);
             mm.connect();
         } catch (Exception e) {
             //e.printStackTrace();
