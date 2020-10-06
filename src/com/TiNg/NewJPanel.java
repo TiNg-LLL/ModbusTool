@@ -242,8 +242,22 @@ public class NewJPanel extends JPanel {
             jButton.setPreferredSize(preferredSize);
             jButton.setBorder(BorderFactory.createRaisedBevelBorder());
         }
-        if (jButtonName.equals("  停止  ")) {
+        if (jButtonName.equals("急停复位")) {
             jButton.setBackground(Color.red);
+            jButton.setFont(new java.awt.Font("宋体", 1, 16));
+            Dimension preferredSize = new Dimension(86, 30);
+            jButton.setPreferredSize(preferredSize);
+            jButton.setBorder(BorderFactory.createRaisedBevelBorder());
+        }
+        if (jButtonName.equals("  暂停  ")) {
+            jButton.setBackground(Color.ORANGE);
+            jButton.setFont(new java.awt.Font("宋体", 1, 16));
+            Dimension preferredSize = new Dimension(86, 30);
+            jButton.setPreferredSize(preferredSize);
+            jButton.setBorder(BorderFactory.createRaisedBevelBorder());
+        }
+        if (jButtonName.equals(" 回原点 ")) {
+            jButton.setBackground(Color.LIGHT_GRAY);
             jButton.setFont(new java.awt.Font("宋体", 1, 16));
             Dimension preferredSize = new Dimension(86, 30);
             jButton.setPreferredSize(preferredSize);
